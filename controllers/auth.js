@@ -32,8 +32,9 @@ async function signup(req, res) {
     await user.save();
     await profile.save();
 
-    // TODO: Send back a JWT instead of the user
-    res.status(200).json(user)
+    // Return a token INSTEAD of a user!
+    const token = createJWT(user)
+    res.json({ token })
   
   } catch (err) {
     res.status(400).send({ err: err.errmsg })
