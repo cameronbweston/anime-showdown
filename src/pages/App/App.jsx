@@ -9,17 +9,16 @@ import Users from '../Users/Users'
 
 class App extends Component {
 	state = {
-		user: authService.getUser(),
-		userProfile: null
+		user: authService.getUser()
 	}
 
 	handleLogout = () => {
 		authService.logout()
-		this.setState({ user: null, userProfile: null })
+		this.setState({ user: null })
 		this.props.history.push('/')
 	}
 
-	handleSignupOrLogin = async () => {
+	handleSignupOrLogin = () => {
 		this.setState({ user: authService.getUser() })
 	}
 
@@ -49,7 +48,3 @@ class App extends Component {
 }
 
 export default App
-
-/*
-	1. 
-*/
