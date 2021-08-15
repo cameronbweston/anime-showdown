@@ -112,3 +112,46 @@ className="w-5/12 bg-blue-200 p-10 rounded-3xl mt-20"
   </Link>
 </div>
 </form>
+
+
+
+
+
+
+
+
+
+<form
+autoComplete="off"
+onSubmit={this.handleSubmit}
+className={styles.container}
+>
+<div className={styles.inputContainer}>
+  <label htmlFor="email" className={styles.label}>Email</label>
+  <input
+    type="text"
+    autoComplete="off"
+    id="email"
+    value={email}
+    name="email"
+    onChange={this.handleChange}
+  />
+</div>
+<div className={styles.inputContainer}>
+  <label htmlFor="password" className={styles.label}>Password</label>
+  <input
+    type="password"
+    autoComplete="off"
+    id="password"
+    value={pw}
+    name="pw"
+    onChange={this.handleChange}
+  />
+</div>
+<div>
+  <button className={styles.button}>Log In</button>
+  <Link to="/">
+    <button>Cancel</button>
+  </Link>
+</div>
+</form>

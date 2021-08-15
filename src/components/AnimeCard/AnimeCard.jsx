@@ -9,7 +9,7 @@ class AnimeCard extends Component {
   render() {
     return (
       <>
-        <div className="border min-h-full py-6 flex flex-col justify-center sm:py-12">
+        <div className="min-h-full py-6 flex flex-col justify-center sm:py-12">
           <div className="py-3 sm:max-w-xl sm:mx-auto">
             <center>
               *only placed here for testing purposes*

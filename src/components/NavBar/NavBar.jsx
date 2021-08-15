@@ -13,21 +13,12 @@ const NavBar = ({ user, handleLogout }) => {
 		<>
 			{user ? (
 
-<Disclosure as="nav" className="h-20 bg-white shadow flex items-center">
+<Disclosure as="nav" className="h-20 bg-white shadow-2xl flex items-center">
 {({ open }) => (
 	<>
 		<div className="max-w-7xl w-full px-2 sm:px-6 lg:px-8">
-			<div className="relative flex justify-between h-16">
+			<div className=" flex h-16">
 				<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-					{/* Mobile menu button */}
-					<Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-						<span className="sr-only">Open main menu</span>
-						{open ? (
-							<XIcon className="block h-6 w-6" aria-hidden="true" />
-						) : (
-							<MenuIcon className="block h-6 w-6" aria-hidden="true" />
-						)}
-					</Disclosure.Button>
 				</div>
 				<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 					<div className="flex-shrink-0 flex items-center">
@@ -49,11 +40,11 @@ const NavBar = ({ user, handleLogout }) => {
 						</Link>
 					</div>
 				</div>
-				<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-					<div class="p-8">
+				<div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+					<div class="">
   					<div class="bg-white flex items-center rounded-full shadow-xl">
     					<input class="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none" id="search" type="text" placeholder="Search"></input>
-    					<div className="p-4">
+    					<div className="p-2">
       					<button className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
 									<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       					</button>
@@ -66,7 +57,7 @@ const NavBar = ({ user, handleLogout }) => {
 					<Menu as="div" className="ml-3 relative">
 						<div className="ml-20 -mr-12">
 							<Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-								<span className="sr-only">Open user menu</span>
+								<span className="sr-only">User Menu</span>
 								<button className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
 									<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
 								</button>
