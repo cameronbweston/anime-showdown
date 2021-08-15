@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 
 export {
-  Anime
+  Manga
 }
 
-const animeSchema = new mongoose.Schema(
+const mangaSchema = new mongoose.Schema(
   {
     title: String,
     releaseYear: Date,
@@ -17,4 +17,4 @@ const animeSchema = new mongoose.Schema(
   }
 )
 
-const Anime = mongoose.model('Anime', animeSchema)
+const Manga = mongoose.model('Manga', mangaSchema)
