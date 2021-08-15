@@ -11,3 +11,4 @@ const router = Router();
 
 
 /*---------- Protected Routes ----------*/
+router.get('/search/:title', animeCtrl.searchAnime)

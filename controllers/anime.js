@@ -9,12 +9,12 @@ export {
 const BASE_URL = 'https://api.jikan.moe/v3/'
 
 function searchAnime(req, res) {
-  const searchTitle = '';
 
-  axios.get(`BASE_URL/search/anime?1=${searchTitle}`, {
+  axios.get(`BASE_URL/search/anime?1=${req.params.searchTitle}`, {
     method: 'get',
   }).then(result => {
     console.log(result.data); 
+    res.json(result.data)
   })
   .catch((err) => console.log(err.message));
 }
