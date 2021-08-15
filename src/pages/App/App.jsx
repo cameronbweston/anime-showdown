@@ -6,27 +6,37 @@ import Login from '../Login/Login'
 import Landing from '../Landing/Landing'
 import * as authService from '../../services/authService'
 import Users from '../Users/Users'
+import * as profileAPI from '../../services/profileService'
 
 class App extends Component {
 	state = {
-		user: authService.getUser()
+		user: authService.getUser(),
+		userProfile: null
 	}
 
 	handleLogout = () => {
 		authService.logout()
-		this.setState({ user: null })
+		this.setState({ user: null, userProfile:null })
 		this.props.history.push('/')
 	}
 
-	handleSignupOrLogin = () => {
-		this.setState({ user: authService.getUser() })
+	handleSignupOrLogin = async() => {
+		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
+	}
+
+
+	async componentDidMount() {
+		if (!this.state.userProfile){
+			const userProfile = await profileAPI.getUserProfile()
+			this.setState({ userProfile })
+		}
 	}
 
 	render() {
 		const { user } = this.state
 		return (
 			<>
-				<NavBar user={user} handleLogout={this.handleLogout} />
+				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
 				<Route exact path='/'>
           <Landing user={user} />
         </Route>
@@ -49,9 +59,9 @@ class App extends Component {
 
 export default App
 
-//S1-D: Create components for Primary Game Cards
+//S̶1̶-̶D̶:̶ C̶r̶e̶a̶t̶e̶ c̶o̶m̶p̶o̶n̶e̶n̶t̶s̶ f̶o̶r̶ P̶r̶i̶m̶a̶r̶y̶ G̶a̶m̶e̶ C̶a̶r̶d̶s̶
 //S2-D: Create and stub up Friends page, Profile page, Saved Anime page, Final Game Results page
-//S3-D: Style Login UI
+//S̶3̶-̶D̶:̶ S̶t̶y̶l̶e̶ L̶o̶g̶i̶n̶ U̶I̶
 //S4-D: Style Main Game UI
 //S5-D: Add Search Bar to the Nav Bar for searching shows
 //S6-D: Create Routes/Links with React Router in App.jsx for navigating to different pages

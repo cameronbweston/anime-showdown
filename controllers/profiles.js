@@ -8,6 +8,15 @@ export {
   unfriend
 }
 
+function userProfile(req, res) {
+  Profile.findById(req.user.profile)
+  // .populate('media')
+  // .populate('friends')
+  .then(profile => {
+    res.json(profile)
+  })
+}
+
 function friend(req, res) {
   // Find the user's profile
   Profile.findById(req.user.profile)
@@ -43,14 +52,5 @@ function index(req, res) {
   // .populate('friends')
   .then(profiles => {
     res.json(profiles)
-  })
-}
-
-function userProfile(req, res) {
-  Profile.findById(req.user.profile)
-  // .populate('media')
-  // .populate('friends')
-  .then(profile => {
-    res.json(profile)
   })
 }
