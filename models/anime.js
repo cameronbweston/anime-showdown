@@ -10,6 +10,7 @@ const animeSchema = new mongoose.Schema(
     releaseYear: Date,
     coverImg: String,
     synopsis: String,
+    isMovie: Boolean,
     review: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
   },
   {
