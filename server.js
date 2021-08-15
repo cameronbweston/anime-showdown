@@ -7,6 +7,7 @@ import cors from 'cors'
 import { router as usersRouter } from './routes/users.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as animeRouter } from './routes/anime.js'
+import { router as profilesRouter } from './routes/profiles.js'
 import('./config/database.js')
 
 const app = express()
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use('/api/users', usersRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/anime', animeRouter)
+app.use('/api/profiles', profilesRouter)
 
 app.get("/*", function (req, res) {
 	res.sendFile(
