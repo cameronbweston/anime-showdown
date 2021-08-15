@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as animeCtrl from '../controllers.media.js'
+import * as animeCtrl from '../controllers/anime.js'
 
 export {
   router
@@ -11,3 +11,4 @@ const router = Router();
 
 
 /*---------- Protected Routes ----------*/
+router.get('/search/:title', animeCtrl.searchAnime)
