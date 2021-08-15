@@ -7,6 +7,7 @@ export {
 }
 
 const BASE_URL = 'https://api.jikan.moe/v3/'
+// EXAMPLE QUERY:  /search/anime?q=Boku&page=1&genre=12&genre_exclude=0
 
 function searchAnime(req, res) {
 
@@ -20,7 +21,10 @@ function searchAnime(req, res) {
 }
 
 function getRandomShowsForGameStart(req, res) {
-
+  //const genre1 = req.body.genre1
+  //const genre2 = req.body.genre2
+  //const genre3 = req.body.genre3
+  
 }
 
 function addToUserCollection(req, res) {
