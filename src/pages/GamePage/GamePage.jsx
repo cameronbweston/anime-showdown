@@ -20,8 +20,8 @@ class GamePage extends Component {
      //Scrub and delete everything
    }
 
-   handleChoose = (e, ) => {
-     e.preventDefault()
+   handleChoose = () => {
+    // e.preventDefault()
 
     }
 
