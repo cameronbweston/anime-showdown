@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-
+import '../../components/AnimeCard/AnimeCard'
+import AnimeCard from '../../components/AnimeCard/AnimeCard';
+import * as animeAPI from '../../services/animeService'
 
 class AnimeDetails extends Component {
     state = { 
         searchResult:{} 
     }
 
-    async componentDidMount(){
-        
-    }
+    // async componentDidMount(){
+    //     const searchResult = await animeAPI.searchAnime(this.props.match.params.id)
+    //     this.setState({searchResult})
+    // }
     render() { 
         const {searchResult} = this.state
         return ( 
             <>
-            <h1>Deadman Wonderland</h1>
-            <img src = {'https://thicc.mywaifulist.moe/series/394/530dd079e50bc436fe7336450c2eb028a5a2c4872a74ae1b939ce0131de72ae8.jpeg'}></img>
-            <a href = "https://imdb-api.com/title/tt1909447"> View on IMBD</a>
-            <h2>Runtime: 1 season </h2>
+            <h1>{searchResult.title}</h1>
+            <h1>{searchResult.Genre}</h1>
+            <AnimeCard />
             </>
          );
     }
