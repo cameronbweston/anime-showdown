@@ -24,8 +24,9 @@ class GameForm extends Component {
 	};
 
   handleGenreChange = e => {
-    this.state.formData.genre.push(e.target.value)
+    this.state.formData.genre.concat(e.target.value)
     this.setState()
+    console.log(e.target.value)
     console.log(this.state)
   }
 
@@ -102,7 +103,7 @@ class GameForm extends Component {
               <input
                 onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
-                value="[24, 18, 29, 31, 11]"
+                value={[24, 18, 29, 31, 11]}
                 id="scifi"
                 name="scifi"
               />
@@ -110,7 +111,7 @@ class GameForm extends Component {
               <input
                 onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
-                value="fantasy"
+                value={[6, 10, 16, 32, 37, 42]}
                 id="fantasy"
                 name="fantasy"
               />
@@ -118,7 +119,7 @@ class GameForm extends Component {
               <input
                 onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
-                value="comedy"
+                value={[4, 20, 35]}
                 id="comedy"
                 name="comedy"
               />
@@ -126,7 +127,7 @@ class GameForm extends Component {
               <input
                 onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
-                value="Drama"
+                value={[8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43]}
                 id="Drama"
                 name="Drama"
               />
@@ -134,11 +135,27 @@ class GameForm extends Component {
               <input
                 onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
-                value="action"
+                value={[1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38]}
                 id="action"
                 name="action"
               />
-              <label htmlFor="action">Action</label>
+              <label htmlFor="action">Action/Adventure</label>
+              <input
+                onChange={e => this.handleGenreChange(e)}
+                type="checkbox" 
+                value={[5, 32, 14, 37, 40, 41, 42]}
+                id="Psychological"
+                name="Psychological"
+              />
+              <label htmlFor="Psychological">Horror & Psychological</label>
+              <input
+                onChange={e => this.handleGenreChange(e)}
+                type="checkbox" 
+                value={[7, 39]}
+                id="Crime/Mystery"
+                name="Crime/Mystery"
+              />
+              <label htmlFor="Crime/Mystery">Crime/Mystery</label>
             </div>
           </div>
         </div>
