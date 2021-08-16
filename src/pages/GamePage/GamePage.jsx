@@ -13,7 +13,8 @@ class GamePage extends Component {
      const getShowsForGameResults = await animeAPI.getRandomShowsForGameStart()
      //Do some data massaging
      //Map each shows id, title, img, synopsis, etc. to showsForGameArray
-     this.setState({getShowsForGameResults})
+     this.setState({showsForGame: getShowsForGameResults})
+     //Get first 2 shows, set state to match the 2 shows
    }
 
    async componentWillUnmount() {
@@ -29,10 +30,16 @@ class GamePage extends Component {
     return ( 
       <>
       <h1>Anime Battle!!!</h1>
-      <AnimeCard />
+      <AnimeCard 
+        title={this.state.currentShow1.title}
+        image={this.state.currentShow1.image}
+        synopsis={this.state.currentShow1.synopsis} />
       <button onClick={this.handleChoose()}>Choose Show 1</button>
       <h2>VS.</h2>
-      <AnimeCard />
+      <AnimeCard 
+        title={this.state.currentShow2.title}
+        image={this.state.currentShow2.image}
+        synopsis={this.state.currentShow2.synopsis} />
       <button onClick={this.handleChoose()}>Choose Show 2</button>
       </>
      );
