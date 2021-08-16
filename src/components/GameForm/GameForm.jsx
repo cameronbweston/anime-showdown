@@ -196,8 +196,8 @@ class GameForm extends Component {
           <div className="text-3xl font-semibold">
             <button 
               disabled={this.state.invalidForm}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Submit
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate-pulse">
+              Showdown!
             </button>
           </div>
         </div>
