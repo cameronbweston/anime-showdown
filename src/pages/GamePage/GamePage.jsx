@@ -12,7 +12,6 @@ class GamePage extends Component {
    async componentDidMount() {
      //Get Damiens passed in props for user choices ---> Pass to gameStart()
      const getShowsForGameResults = await animeAPI.getRandomShowsForGameStart()
-     
      //Do some data massaging OR do some data massaging on API side
      //Map each shows id, title, img, synopsis, etc. to showsForGameArray
      this.setState({showsForGame: getShowsForGameResults})

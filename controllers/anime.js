@@ -20,13 +20,14 @@ function searchAnime(req, res) {
 }
 
 function getRandomShowsForGameStart(req, res) {
+  let limit = 10
   //const genre1 = req.body.genre1
   //const genre2 = req.body.genre2
   //const genre3 = req.body.genre3
   //example call: https://api.jikan.moe/v3/search/anime?q=attack on titan
-    axios.get(`${BASE_URL}top/anime/1`)
+    axios.get(`${BASE_URL}search/anime?q=Attack on titan&limit=${limit}`)
     .then(result => {
-      console.log(result.data)
+      //console.log(result.data)
       res.json(result.data)
   })
   .catch((err) => console.log(err.message));
