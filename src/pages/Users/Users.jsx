@@ -16,7 +16,11 @@ class Users extends Component {
       <>
         <h1>This is a list of all the users.</h1>
         {this.state.users.map((user) => (
-          <p key={user._id}>{user.name} </p>
+          <a href="/profile/:id">
+
+            <p key={user._id}>{user.name} </p>
+
+          </a>
         ))}
       </>
     )

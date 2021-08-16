@@ -11,6 +11,7 @@ import * as profileAPI from '../../services/profileService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 
 import GamePage from '../GamePage/GamePage'
+import ProfileDetails from '../ProfileDetails/ProfileDetails'
 
 
 class App extends Component {
@@ -64,6 +65,11 @@ class App extends Component {
 				<Route exact path='/gamePage'>
 					<GamePage history={this.props.history}/>
 				</Route>
+				<Route exact path='/profile/:id'
+					render={()=>
+					<ProfileDetails />
+					}
+				/>
 				
 			</>
 		)
