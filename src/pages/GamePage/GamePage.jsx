@@ -9,6 +9,8 @@ class GamePage extends Component {
     currentShow2: null
    }
 
+   
+
    async componentDidMount() {
      //Get Damiens passed in props for user choices ---> Pass to gameStart()
      const getShowsForGameResults = await animeAPI.getRandomShowsForGameStart()
