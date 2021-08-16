@@ -12,6 +12,7 @@ class GamePage extends Component {
    async componentDidMount() {
      //Get Damiens passed in props for user choices ---> Pass to gameStart()
      const getShowsForGameResults = await animeAPI.getRandomShowsForGameStart()
+     
      //Do some data massaging OR do some data massaging on API side
      //Map each shows id, title, img, synopsis, etc. to showsForGameArray
      this.setState({showsForGame: getShowsForGameResults})
@@ -36,15 +37,17 @@ class GamePage extends Component {
       <>
       <h1>Anime Battle!!!</h1>
       <AnimeCard 
-        title={this.state.currentShow1.title}
-        image={this.state.currentShow1.image}
-        synopsis={this.state.currentShow1.synopsis} />
-      <button onClick={this.handleChoose(this.state.currentShow1.id)}>Choose Show 1</button>
+        // title={this.state.currentShow1.title}
+        // image={this.state.currentShow1.image}
+        // synopsis={this.state.currentShow1.synopsis} 
+        />
+      <button onClick={this.handleChoose()}>Choose Show 1</button>
       <h2>VS.</h2>
       <AnimeCard 
-        title={this.state.currentShow2.title}
-        image={this.state.currentShow2.image}
-        synopsis={this.state.currentShow2.synopsis} />
+        // title={this.state.currentShow2.title}
+        // image={this.state.currentShow2.image}
+        // synopsis={this.state.currentShow2.synopsis} 
+        />
       <button onClick={this.handleChoose()}>Choose Show 2</button>
       </>
      );

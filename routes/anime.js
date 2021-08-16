@@ -13,5 +13,5 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/search/:title', checkAuth,animeCtrl.searchAnime)
-router.get('getRandomShowsForGameStart', checkAuth,animeCtrl.getRandomShowsForGameStart)
+router.get('/search/:title', animeCtrl.searchAnime)
+router.get('/getRandomShowsForGameStart', animeCtrl.getRandomShowsForGameStart)

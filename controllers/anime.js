@@ -11,9 +11,8 @@ const BASE_URL = 'https://api.jikan.moe/v3/'
 
 function searchAnime(req, res) {
 
-  axios.get(`BASE_URL/search/anime?1=${req.params.searchTitle}`, {
-    method: 'get',
-  }).then(result => {
+  axios.get(`BASE_URL/search/anime?q=${req.params.searchTitle}`)
+  .then(result => {
     console.log(result.data); 
     res.json(result.data)
   })
@@ -24,7 +23,13 @@ function getRandomShowsForGameStart(req, res) {
   //const genre1 = req.body.genre1
   //const genre2 = req.body.genre2
   //const genre3 = req.body.genre3
-  
+  //example call: https://api.jikan.moe/v3/search/anime?q=attack on titan
+    axios.get(`${BASE_URL}top/anime/1`)
+    .then(result => {
+      console.log(result.data)
+      res.json(result.data)
+  })
+  .catch((err) => console.log(err.message));
 }
 
 function addToUserCollection(req, res) {
