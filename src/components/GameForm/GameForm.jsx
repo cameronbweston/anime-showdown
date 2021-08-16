@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import reactDom from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { withRouter, BrowserRouter } from 'react-router-dom';
+
 
 class GameForm extends Component {
   state = {
@@ -12,120 +12,164 @@ class GameForm extends Component {
     }
   }
 
+  formRef = React.createRef();
+
+  handleTypeChange = e => {
+    this.state.formData.type.push(e.target.value)
+    this.setState()
+    console.log(this.state)
+		// const formData = {...this.state.formData, [e.target.name]: e.target.value};
+		// this.setState({
+		// formData,
+		// invalidForm: !this.formRef.current.checkValidity()
+		// });
+	};
+
+  handleGenreChange = e => {
+    this.state.formData.genre.push(e.target.value)
+    this.setState()
+    console.log(this.state)
+  }
+
+  handleRatedChange = e => {
+    this.state.formData.rated.push(e.target.value)
+    this.setState()
+    console.log(this.state)
+  }
+
   handleSubmit = e => {
     const formData = {}
-    <Link to={"/game"} />
+    this.setState({
+      formData,
+      invalidForm: !this.formRef.current.checkValidity()
+    })
+    this.props.history.push('/gamepage');
   }
 
   render() {
   return ( 
-    
-    <form>
+    <form
+    ref={this.formRef}
+    onSubmit={this.handleSubmit}
+    >
       <div className="my-5">
         <p>Are you looking for an anime series, movie, or manga?</p>
         <input
+          onChange={e => this.handleTypeChange(e)}
           type="checkbox" 
           value="tv"
           id="tv"
           name="tv"
           />
-        <label for="tv">Series</label><br/>
+        <label htmlFor="tv">Series</label><br/>
         <input
+          onChange={e => this.handleTypeChange(e)}
           type="checkbox" 
           value="movie"
           id="movie"
           name="movie"
           />
-        <label for="movie">Movie</label><br/>
+        <label htmlFor="movie">Movie</label><br/>
         <input
+          onChange={e => this.handleTypeChange(e)}
           type="checkbox" 
           value="manga"
           id="manga"
           name="manga"
           />
-        <label for="manga">Manga</label>
+        <label htmlFor="manga">Manga</label>
       </div> 
 
       <div className="my-5">
-        <p>What genres are you interested in?</p>
+        <p>What genre(s) are you interested in?</p>
         <input
+          onChange={e => this.handleGenreChange(e)}
           type="checkbox" 
-          value="scifi"
+          value="[24, 18, 29, 31, 11]"
           id="scifi"
           name="scifi"
           />
-        <label for="scifi">Sci-Fi</label><br/>
+        <label htmlFor="scifi">Sci-Fi</label><br/>
         <input
+          onChange={e => this.handleGenreChange(e)}
           type="checkbox" 
           value="fantasy"
           id="fantasy"
           name="fantasy"
           />
-        <label for="fantasy">Fantasy</label><br/>
+        <label htmlFor="fantasy">Fantasy</label><br/>
         <input
+          onChange={e => this.handleGenreChange(e)}
           type="checkbox" 
           value="comedy"
           id="comedy"
           name="comedy"
           />
-        <label for="comedy">Comedy</label><br/>
+        <label htmlFor="comedy">Comedy</label><br/>
         <input
+          onChange={e => this.handleGenreChange(e)}
           type="checkbox" 
           value="Drama"
           id="Drama"
           name="Drama"
           />
-        <label for="Drama">Drama</label><br/>
+        <label htmlFor="Drama">Drama</label><br/>
         <input
+          onChange={e => this.handleGenreChange(e)}
           type="checkbox" 
           value="action"
           id="action"
           name="action"
           />
-        <label for="action">Action</label>
+        <label htmlFor="action">Action</label>
       </div>
 
       <div className="my-5">
         <p>What rating(s) would be appropriate?</p>
         <input
+          onChange={e => this.handleRatedChange(e)}
           type="checkbox" 
           value="g"
-          id="rated"
+          id="g"
           name="rated"
           />
-        <label for="rated">G - All Ages</label><br/>
+        <label htmlFor="g">G - All Ages</label><br/>
         <input
+          onChange={e => this.handleRatedChange(e)}
           type="checkbox" 
           value="pg"
-          id="rated"
+          id="pg"
           name="rated"
           />
-        <label for="rated">PG - Children</label><br/>
+        <label htmlFor="pg">PG - Children</label><br/>
         <input
+          onChange={e => this.handleRatedChange(e)}
           type="checkbox" 
           value="pg13"
-          id="rated"
+          id="pg13"
           name="rated"
           />
-        <label for="rated">PG-13 - Teens 13 or older</label><br/>
+        <label htmlFor="pg13">PG-13 - Teens 13 or older</label><br/>
         <input
+          onChange={e => this.handleRatedChange(e)}
           type="checkbox" 
           value="r17"
-          id="rated"
+          id="r17"
           name="rated"
           />
-        <label for="rated">R - 17+ recommended (violence & profanity)</label><br/>
+        <label htmlFor="r17">R - 17+ recommended (violence & profanity)</label><br/>
         <input
+          onChange={e => this.handleRatedChange(e)}
           type="checkbox" 
-          value="r17"
-          id="rated"
+          value="r"
+          id="r"
           name="rated"
           />
-        <label for="rated" >R+ - Mild Nudity (may also contain violence & profanity)</label>
+        <label htmlFor="r" >R+ - Mild Nudity (may also contain violence & profanity)</label>
       </div>
       <div>
         <button 
-        onClick={<Link to="/game" />}
+        disabled={this.state.invalidForm}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
       </div>
     </form>
