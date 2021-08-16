@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { withRouter, BrowserRouter } from 'react-router-dom';
-
 
 class GameForm extends Component {
   state = {
-    invalidForm: true,
+    invalidForm: null,
     formData: {
       type: [],
       genre: [],
@@ -37,13 +35,13 @@ class GameForm extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = e => {
-    const formData = {}
-    this.setState({
-      formData,
-      invalidForm: !this.formRef.current.checkValidity()
-    })
+  handleSubmit = history => {
     this.props.history.push('/gamepage');
+    // const formData = {}
+    // this.setState({
+    //   formData,
+    //   invalidForm: !this.formRef.current.checkValidity()
+    // })
   }
 
   render() {

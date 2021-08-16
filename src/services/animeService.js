@@ -6,7 +6,8 @@ export function searchAnime(title) {
 }
 
 export function getRandomShowsForGameStart() {
-
+  return fetch(`${BASE_URL}getRandomShowsForGameStart`)
+  .then(res => res.json())
 }
 
 export function addToUserCollection() {
