@@ -1,6 +1,22 @@
 import React, { Component } from 'react'
+import reactDom from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class GameForm extends Component {
+  state = {
+    invalidForm: true,
+    formData: {
+      type: [],
+      genre: [],
+      rated: [],
+    }
+  }
+
+  handleSubmit = e => {
+    const formData = {}
+    <Link to={"/game"} />
+  }
+
   render() {
   return ( 
     
@@ -108,7 +124,9 @@ class GameForm extends Component {
         <label for="rated" >R+ - Mild Nudity (may also contain violence & profanity)</label>
       </div>
       <div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+        <button 
+        onClick={<Link to="/game" />}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
       </div>
     </form>
 
