@@ -7,20 +7,7 @@ const Landing = ({user}) => {
     <main className="">
       <div className="mt-5">
         {user ? (
-          
-          <form>
-      <label>anime, manga, movie?</label>
-        <input></input>
-      <label>Question 2</label>
-        <input></input>
-      <label>Question 3</label>
-        <input></input>
-      <label>Question 4</label>
-        <input></input>
-    </form>
-          
-          // <GameForm user={user} />
-
+          <GameForm user={user} />
         ) : (
           <>
           </>
