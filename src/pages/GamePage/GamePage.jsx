@@ -14,14 +14,20 @@ class GamePage extends Component {
      //Do some data massaging OR do some data massaging on API side
      //Map each shows id, title, img, synopsis, etc. to showsForGameArray
      this.setState({showsForGame: getShowsForGameResults})
-     //Get first 2 shows, set state to match the 2 shows
-     //const currentShow1Idx = showsForGame.findIndex(currentShow1)
-     //const currentShow2Idx = showsForGame.findIndex(currentShow2)
+     //1. Get first 2 shows, set state to match the 2 shows
+     //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
+     //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
+     
    }
 
    handleChoose = () => {
+     //CHECK FOR END GAME WIN CONDITIONS FIRST
     // e.preventDefault()
-    //
+    //4. Splice select show idx from array and remove it
+    //5. Select 2 more shows (random or not) 
+    //6. Update currentShow1 state with new show
+    //7. Update currentShow2 state with new show
+    //8. Re-render AnimeCards and let user go again...
     }
 
   render() { 
