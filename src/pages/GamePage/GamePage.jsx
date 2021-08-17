@@ -9,7 +9,6 @@ class GamePage extends Component {
     currentShow2: null
    }
 
-   
    async componentDidMount() {
      const showsForGame = await animeAPI.getRandomShowsForGameStart()
      console.log(showsForGame)

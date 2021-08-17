@@ -7,7 +7,11 @@ import Landing from '../Landing/Landing'
 import * as authService from '../../services/authService'
 import Users from '../Users/Users'
 import * as profileAPI from '../../services/profileService'
+
+import AnimeDetails from '../AnimeDetails/AnimeDetails'
+
 import GamePage from '../GamePage/GamePage'
+
 
 class App extends Component {
 	state = {
@@ -34,7 +38,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { user } = this.state
+		const { user, userProfile } = this.state
 		return (
 			<>
 				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
