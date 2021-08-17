@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
 
@@ -6,7 +7,8 @@ class GamePage extends Component {
   state = { 
     showsForGame: [],
     show1Idx: null,
-    show2Idx: null
+    show2Idx: null,
+    gameOver: false
    }
 
    async componentDidMount() {
@@ -20,12 +22,6 @@ class GamePage extends Component {
     })
    }
     
-    //this.setState({showsForGame: getShowsForGameResults})
-    //1. Get first 2 shows, set state to match the 2 shows
-    //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
-    //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
-   
-
    handleChoose = (idx) => {
     //Splice selected show idx from array and remove it
     const showsForGame = this.state.showsForGame
@@ -35,6 +31,8 @@ class GamePage extends Component {
     if (showsForGame.length === 2) {
       //END GAME
       //Render game winning page
+      const gameOver = true
+      this.setState({gameOver})
     } 
     //Select 2 more shows (random or not) 
     //May need to make sure these random ints are never the same --->
@@ -55,6 +53,25 @@ class GamePage extends Component {
     const { show1Idx } = this.state
     const { show2Idx } = this.state
     //console.log(`component state: ${this.state.showsForGame}`)
+
+    if (this.state.gameOver) {
+      return (
+        <>
+          <h1>You Should Watch:</h1>
+          <AnimeCard 
+            title={showsForGame[show1Idx].title}
+            image={showsForGame[show1Idx].image_url}
+            synopsis={showsForGame[show1Idx].synopsis} 
+            score={showsForGame[show1Idx].score}
+            rated={showsForGame[show1Idx].rated}
+            episodes={showsForGame[show1Idx].episodes}
+            />
+            {/* PASS in the show index to delete*/}
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>Add to Collection</button>
+        </>
+      )
+    }
+
     let isLoading = true
     if(this.state.showsForGame.length > 0) {
       isLoading = false

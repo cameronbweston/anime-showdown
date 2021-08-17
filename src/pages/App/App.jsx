@@ -7,9 +7,7 @@ import Landing from '../Landing/Landing'
 import * as authService from '../../services/authService'
 import Users from '../Users/Users'
 import * as profileAPI from '../../services/profileService'
-
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
-
 import GamePage from '../GamePage/GamePage'
 
 
@@ -56,7 +54,7 @@ class App extends Component {
 					render={()=> 
 						user ? <Users /> : <Redirect to='/login'/>
 				}/>
-				<Route exact path='/gamePage'>
+				<Route exact path='/GamePage'>
 					<GamePage history={this.props.history}/>
 				</Route>
 			</>

@@ -13,7 +13,7 @@ class AnimeCard extends Component {
         <div className="min-h-full py-6 flex flex-col justify-center sm:py-12">
           <div className="py-3 sm:max-w-xl sm:mx-auto">
             <center>
-              *only placed here for testing purposes*
+              {/* *only placed here for testing purposes* */}
             </center>
             <div className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8">
               <div className="h-48 overflow-visible w-1/2">
