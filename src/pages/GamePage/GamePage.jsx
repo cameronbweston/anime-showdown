@@ -16,18 +16,16 @@ class GamePage extends Component {
    }
     
     //Map each shows id, title, img, synopsis, etc. to showsForGameArray
-    //this.setState({showsForGame: getShowsForGameResults})
     //1. Get first 2 shows, set state to match the 2 shows
     //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
     //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
    
 
    handleChoose = () => {
-     //CHECK FOR END GAME WIN CONDITIONS FIRST
      //
-    // e.preventDefault()
-    //4. Splice select show idx from array and remove it
-    //5. Select 2 more shows (random or not) 
+     //4. Splice select show idx from array and remove it
+     //CHECK FOR END GAME WIN CONDITIONS (showsForGame.length == 2)
+     //5. Select 2 more shows (random or not) 
     //6. Update currentShow1 state with new show
     //7. Update currentShow2 state with new show
     //8. Re-render AnimeCards and let user go again...
@@ -42,6 +40,7 @@ class GamePage extends Component {
     if(this.state.showsForGame.length > 0) {
       isLoading = false
     }
+    
     return (       
       <>
       {isLoading ? 
@@ -61,7 +60,7 @@ class GamePage extends Component {
            rated={showsForGame[0].rated}
            episodes={showsForGame[0].episodes}
           />
-        <button onClick={this.handleChoose()}>Choose Show 1</button>
+        <button onClick={this.handleChoose}>Choose Show 1</button>
         <h2>VS.</h2>
         <AnimeCard 
            title={showsForGame[1].title}
@@ -71,7 +70,7 @@ class GamePage extends Component {
            rated={showsForGame[1].rated}
            episodes={showsForGame[1].episodes}
           />
-        <button onClick={this.handleChoose()}>Choose Show 2</button>
+        <button onClick={this.handleChoose}>Choose Show 2</button>
       </div> 
       }
       </>
