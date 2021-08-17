@@ -5,17 +5,21 @@ import * as animeAPI from '../../services/animeService'
 class GamePage extends Component {
   state = { 
     showsForGame: [],
-    currentShow1: null,
-    currentShow2: null
+    show1Idx: null,
+    show2Idx: null
    }
 
    async componentDidMount() {
      const showsForGame = await animeAPI.getRandomShowsForGameStart()
-     console.log(showsForGame)
-     this.setState({showsForGame})
+     const show1Idx = 0
+     const show2Idx = 1
+     this.setState({
+       showsForGame,
+       show1Idx,
+       show2Idx
+    })
    }
     
-    //Map each shows id, title, img, synopsis, etc. to showsForGameArray
     //this.setState({showsForGame: getShowsForGameResults})
     //1. Get first 2 shows, set state to match the 2 shows
     //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
@@ -23,10 +27,9 @@ class GamePage extends Component {
    
 
    handleChoose = () => {
-     //CHECK FOR END GAME WIN CONDITIONS FIRST
      //
-    // e.preventDefault()
-    //4. Splice select show idx from array and remove it
+     //4. Splice select show idx from array and remove it
+     //CHECK FOR END GAME WIN CONDITIONS FIRST (showsForGame.length == 2) 
     //5. Select 2 more shows (random or not) 
     //6. Update currentShow1 state with new show
     //7. Update currentShow2 state with new show
@@ -35,8 +38,8 @@ class GamePage extends Component {
 
   render() { 
     const { showsForGame } = this.state
-    // const { currentShow1 } = this.state.currentShow1
-    // const { currentShow2 } = this.state.currentShow2
+    const { show1Idx } = this.state
+    const { show2Idx } = this.state
     //console.log(`component state: ${this.state.showsForGame}`)
     let isLoading = true
     if(this.state.showsForGame.length > 0) {
@@ -54,24 +57,24 @@ class GamePage extends Component {
       <div>
         <h1>Anime Battle!!!</h1>
         <AnimeCard 
-           title={showsForGame[0].title}
-           image={showsForGame[0].image_url}
-           synopsis={showsForGame[0].synopsis} 
-           score={showsForGame[0].score}
-           rated={showsForGame[0].rated}
-           episodes={showsForGame[0].episodes}
+           title={showsForGame[show1Idx].title}
+           image={showsForGame[show1Idx].image_url}
+           synopsis={showsForGame[show1Idx].synopsis} 
+           score={showsForGame[show1Idx].score}
+           rated={showsForGame[show1Idx].rated}
+           episodes={showsForGame[show1Idx].episodes}
           />
-        <button onClick={this.handleChoose()}>Choose Show 1</button>
+        <button onClick={this.handleChoose(this.state.currentShow1)}>Choose Show 1</button>
         <h2>VS.</h2>
         <AnimeCard 
-           title={showsForGame[1].title}
-           image={showsForGame[1].image_url}
-           synopsis={showsForGame[1].synopsis} 
-           score={showsForGame[1].score}
-           rated={showsForGame[1].rated}
-           episodes={showsForGame[1].episodes}
+           title={showsForGame[show2Idx].title}
+           image={showsForGame[show2Idx].image_url}
+           synopsis={showsForGame[show2Idx].synopsis} 
+           score={showsForGame[show2Idx].score}
+           rated={showsForGame[show2Idx].rated}
+           episodes={showsForGame[show2Idx].episodes}
           />
-        <button onClick={this.handleChoose()}>Choose Show 2</button>
+        <button onClick={this.handleChoose(this.state.currentShow2)}>Choose Show 2</button>
       </div> 
       }
       </>
