@@ -5,9 +5,11 @@ export function searchAnime(title) {
   .then(res => res.json())
 }
 
-export function getRandomShowsForGameStart() {
+export async function getRandomShowsForGameStart() {
   return fetch(`${BASE_URL}getRandomShowsForGameStart`)
   .then(res => res.json())
+  // console.log(data)
+  // return await data.json()
 }
 
 export function addToUserCollection() {
