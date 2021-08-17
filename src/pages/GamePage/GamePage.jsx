@@ -27,21 +27,28 @@ class GamePage extends Component {
    
 
    handleChoose = (idx) => {
-    //4. Splice select show idx from array and remove it
-    const shows = this.state.showsForGame
-    shows.splice(idx, 1)
-    console.log(shows)
+    //Splice selected show idx from array and remove it
+    const showsForGame = this.state.showsForGame
+    showsForGame.splice(idx, 1)
+
     //CHECK FOR END GAME WIN CONDITIONS FIRST (showsForGame.length == 2)
-    if (shows.length === 2) {
-    //END GAME
-    //Render game winning page
+    if (showsForGame.length === 2) {
+      //END GAME
+      //Render game winning page
     } 
-    //5. Select 2 more shows (random or not) 
-    
-    //6. Update currentShow1 state with new show
-    //7. Update currentShow2 state with new show
-    //8. Re-render AnimeCards and let user go again...
-    }
+    //Select 2 more shows (random or not) 
+    //May need to make sure these random ints are never the same --->
+    const show1Idx = Math.floor(Math.random() * showsForGame.length)
+    const show2Idx = Math.floor(Math.random() * showsForGame.length)
+    // console.log(show1Idx)
+    // console.log(show2Idx)
+    // Update the state
+    this.setState({ 
+      showsForGame,
+      show1Idx,
+      show2Idx
+   })
+}
 
   render() { 
     const { showsForGame } = this.state
@@ -72,7 +79,7 @@ class GamePage extends Component {
            episodes={showsForGame[show1Idx].episodes}
           />
           {/* PASS in the show index to delete*/}
-        <button onClick={() => this.handleChoose(show2Idx)}>Choose Show 1</button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>Choose Show 1</button>
         <h2>VS.</h2>
         <AnimeCard 
            title={showsForGame[show2Idx].title}
@@ -83,7 +90,7 @@ class GamePage extends Component {
            episodes={showsForGame[show2Idx].episodes}
           />
           {/* PASS in the show index to delete*/}
-        <button onClick={() => this.handleChoose(show1Idx)}>Choose Show 2</button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>Choose Show 2</button>
       </div> 
       }
       </>
