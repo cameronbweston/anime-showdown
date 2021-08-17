@@ -67,7 +67,7 @@ class App extends Component {
 				<Route exact path='/gamePage'>
 					<GamePage history={this.props.history}/>
 				</Route>
-				<Route exact path='/profile/:id'
+				<Route exact path='/profile'
 					render={({location})=>
 					<ProfileDetails 
 						location={location}
