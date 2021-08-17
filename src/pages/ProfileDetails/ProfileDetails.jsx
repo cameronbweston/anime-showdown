@@ -2,8 +2,7 @@ import React from 'react'
 
 const ProfileDetails = ({ location, userProfile }) => {
   const { profile } = location.state
-  // const movies = location.state.profile.media.filter(media => media.type === 'movie')
-  // const tvs = profile.media.filter(media => media.type === 'tv')
+  
   return (
     <>
       <h1>{profile.name}'s Profile</h1>

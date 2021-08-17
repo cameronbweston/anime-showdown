@@ -58,16 +58,21 @@ class App extends Component {
 						user ? <Users /> : <Redirect to='/login'/>
 				}/>
 				<Route exact path='/anime'
-					render={()=>
-					<AnimeDetails />
+					render={({match})=>
+					<AnimeDetails 
+						match={match}
+					/>
 					}
 				/>
 				<Route exact path='/gamePage'>
 					<GamePage history={this.props.history}/>
 				</Route>
 				<Route exact path='/profile/:id'
-					render={()=>
-					<ProfileDetails />
+					render={({location})=>
+					<ProfileDetails 
+						location={location}
+						userProfile={userProfile}
+					/>
 					}
 				/>
 				<Route exact path ='/search'

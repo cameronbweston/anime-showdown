@@ -4,13 +4,13 @@ import * as animeAPI from '../../services/animeService'
 
 class AnimeDetails extends Component {
     state = { 
-        searchResult:{} 
+        searchResult:[]
     }
 
-    // async componentDidMount(){
-    //     const searchResult = await animeAPI.searchAnime( this.props.match.title)
-    //     this.setState({searchResult})
-    // }
+    async componentDidMount(){
+        const searchResult = await animeAPI.searchAnime( this.props.match.title)
+        this.setState({searchResult})
+    }
     render() { 
         const {searchResult} = this.state
         return ( 
