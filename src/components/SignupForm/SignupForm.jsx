@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as authService from '../../services/authService'
 
+
 class SignupForm extends Component {
   state = {
     name: '',
@@ -23,9 +24,11 @@ class SignupForm extends Component {
     try {
       await authService.signup(this.state)
       handleSignupOrLogin()
-      history.push('/')
+      history.push("/")
     } catch (err) {
       // updateMessage(err.message)
+      alert('Error')
+      console.log(err.message)
     }
   }
 
