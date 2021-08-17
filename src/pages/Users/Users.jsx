@@ -21,6 +21,7 @@ class Users extends Component {
       <>
         <h1>This is a list of all the users.</h1>
        {this.state.users.map(user =>
+        
         <ProfileCard/>
         )}
        

@@ -6,7 +6,7 @@ import Login from '../Login/Login'
 import Landing from '../Landing/Landing'
 import * as authService from '../../services/authService'
 import Users from '../Users/Users'
-import * as profileAPI from '../../services/profileService'
+import * as profileAPI from '../../services/userService'
 
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import AnimeSearch from '../AnimeSearch/AnimeSearch'
@@ -28,6 +28,15 @@ class App extends Component {
 
 	handleSignupOrLogin = async() => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
+	}
+	handleAddFriend = async friendId => {
+		const updatedProfile = await profileAPI.friend(friendId)
+		this.setState({ userProfile: updatedProfile })
+	}
+
+	handleRemoveFriend = async friendId => {
+		const updatedProfile = await profileAPI.unfriend(friendId)
+		this.setState({ userProfile: updatedProfile })
 	}
 
 
