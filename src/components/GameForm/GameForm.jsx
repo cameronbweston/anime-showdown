@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+let newArray = []
+
 class GameForm extends Component {
   state = {
     invalidForm: null,
@@ -12,10 +14,11 @@ class GameForm extends Component {
 
   formRef = React.createRef();
 
+
   handleTypeChange = e => {
-    this.state.formData.type.push(e.target.value)
-    this.setState()
-    console.log(this.state)
+    // this.state.formData.type.push(e.target.value)
+    // this.setState()
+    // console.log(this.state)
 		// const formData = {...this.state.formData, [e.target.name]: e.target.value};
 		// this.setState({
 		// formData,
@@ -23,21 +26,55 @@ class GameForm extends Component {
 		// });
 	};
 
-  handleGenreChange = e => {
-    this.state.formData.genre.concat(e.target.value)
-    this.setState()
-    console.log(e.target.value)
-    console.log(this.state)
-  }
-
   handleRatedChange = e => {
-    this.state.formData.rated.push(e.target.value)
-    this.setState()
-    console.log(this.state)
-  }
+    // this.state.formData.rated.push(e.target.value)
+    // this.setState()
+    // console.log(this.state)
+		// const formData = {...this.state.formData, [e.target.name]: e.target.value};
+		// this.setState({
+		// formData,
+		// invalidForm: !this.formRef.current.checkValidity()
+		// });
+	};
 
   handleSubmit = history => {
-    this.props.history.push('/gamepage');
+    if (document.getElementById('scifi').checked) {
+      newArray.push(24, 18, 29, 31, 11)
+      this.state.formData.genre.push(24, 18, 29, 31, 11)
+    }
+    if (document.getElementById('fantasy').checked) {
+      newArray.push(6, 10, 16, 32, 37, 42)
+      this.state.formData.genre.push(6, 10, 16, 32, 37, 42)
+    }
+    if (document.getElementById('comedy').checked) {
+      newArray.push(4, 20, 35)
+      this.state.formData.genre.push(4, 20, 35)
+    }
+    if (document.getElementById('drama').checked) {
+      newArray.push(8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43)
+      this.state.formData.genre.push(8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43)
+    }
+    if (document.getElementById('action').checked) {
+      newArray.push(1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38)
+      this.state.formData.genre.push(1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38)
+    }
+    if (document.getElementById('horror').checked) {
+      newArray.push(5, 32, 14, 37, 40, 41, 42)
+      this.state.formData.genre.push(5, 32, 14, 37, 40, 41, 42)
+    }
+    if (document.getElementById('mystery').checked) {
+      newArray.push(7, 39)
+      this.state.formData.genre.push(7, 39)
+    }
+    console.log('newArray -> ' + newArray)
+    console.log('stateArray -> ' + this.state.formData.genre)
+    // this.state.formData.genre.push(newArray)
+    this.setState()
+
+    console.log(this.state.formData.genre)
+
+    // this.props.history.push('/gamepage');
+
     // const formData = {}
     // this.setState({
     //   formData,
@@ -101,7 +138,6 @@ class GameForm extends Component {
             <div className="text-center">
               <p>What genre(s) are you interested in?</p>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[24, 18, 29, 31, 11]}
                 id="scifi"
@@ -109,7 +145,6 @@ class GameForm extends Component {
               />
               <label htmlFor="scifi">Sci-Fi</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[6, 10, 16, 32, 37, 42]}
                 id="fantasy"
@@ -117,7 +152,6 @@ class GameForm extends Component {
               />
               <label htmlFor="fantasy">Fantasy</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[4, 20, 35]}
                 id="comedy"
@@ -125,37 +159,33 @@ class GameForm extends Component {
               />
               <label htmlFor="comedy">Comedy</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43]}
-                id="Drama"
-                name="Drama"
+                id="drama"
+                name="drama"
               />
-              <label htmlFor="Drama">Drama</label><br/>
+              <label htmlFor="drama">Drama</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38]}
                 id="action"
                 name="action"
               />
-              <label htmlFor="action">Action/Adventure</label>
+              <label htmlFor="action">Action & Adventure</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[5, 32, 14, 37, 40, 41, 42]}
-                id="Psychological"
-                name="Psychological"
+                id="horror"
+                name="horror"
               />
-              <label htmlFor="Psychological">Horror & Psychological</label>
+              <label htmlFor="horror">Horror & Psychological</label><br/>
               <input
-                onChange={e => this.handleGenreChange(e)}
                 type="checkbox" 
                 value={[7, 39]}
-                id="Crime/Mystery"
-                name="Crime/Mystery"
+                id="mystery"
+                name="mystery"
               />
-              <label htmlFor="Crime/Mystery">Crime/Mystery</label>
+              <label htmlFor="mystery">Crime & Mystery</label>
             </div>
           </div>
         </div>
