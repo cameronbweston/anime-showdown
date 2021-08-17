@@ -58,6 +58,9 @@ class GamePage extends Component {
            title={showsForGame[0].title}
            image={showsForGame[0].image_url}
            synopsis={showsForGame[0].synopsis} 
+           score={showsForGame[0].score}
+           rated={showsForGame[0].rated}
+           episodes={showsForGame[0].episodes}
           />
         <button onClick={this.handleChoose()}>Choose Show 1</button>
         <h2>VS.</h2>
@@ -65,6 +68,9 @@ class GamePage extends Component {
            title={showsForGame[1].title}
            image={showsForGame[1].image_url}
            synopsis={showsForGame[1].synopsis} 
+           score={showsForGame[1].score}
+           rated={showsForGame[1].rated}
+           episodes={showsForGame[1].episodes}
           />
         <button onClick={this.handleChoose()}>Choose Show 2</button>
       </div> 
