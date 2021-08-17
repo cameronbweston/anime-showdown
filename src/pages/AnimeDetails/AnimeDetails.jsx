@@ -7,10 +7,10 @@ class AnimeDetails extends Component {
         searchResult:{} 
     }
 
-    async componentDidMount(){
-        const searchResult = await animeAPI.searchAnime("Anime", this.props.match.title)
-        this.setState({searchResult})
-    }
+    // async componentDidMount(){
+    //     const searchResult = await animeAPI.searchAnime( this.props.match.title)
+    //     this.setState({searchResult})
+    // }
     render() { 
         const {searchResult} = this.state
         return ( 

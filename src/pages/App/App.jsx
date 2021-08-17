@@ -9,7 +9,7 @@ import Users from '../Users/Users'
 import * as profileAPI from '../../services/profileService'
 
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
-
+import AnimeSearch from '../AnimeSearch/AnimeSearch'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 
@@ -68,6 +68,11 @@ class App extends Component {
 				<Route exact path='/profile/:id'
 					render={()=>
 					<ProfileDetails />
+					}
+				/>
+				<Route exact path ='/search'
+					render={()=>
+					<AnimeSearch />
 					}
 				/>
 				

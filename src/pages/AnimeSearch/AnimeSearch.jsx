@@ -8,7 +8,7 @@ class AnimeSearch extends Component {
     async componentDidMount() {
         const { params } = this.props.match
         if (params.searchType === 'byName') {
-          const searchResults = await animeAPI.searchAnime( params.query)
+          const searchResults = await animeAPI.searchAnime( this.props.match.query)
           this.setState({ searchResults: searchResults.results })
         } 
       }
@@ -16,13 +16,13 @@ class AnimeSearch extends Component {
         const { params } = this.props.match
         if (params.query !== prevProps.match.params.query){
           if (params.searchType === 'byName') {
-            const searchResults = await animeAPI.search( params.query)
+            const searchResults = await animeAPI.searchAnime( params.query)
             this.setState({ searchResults: searchResults.results })
           }}}
     render() { 
         return ( <> 
             <h1>Anime Results</h1>
-            
+
         </>);
     }
 }
