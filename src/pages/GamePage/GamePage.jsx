@@ -4,27 +4,27 @@ import * as animeAPI from '../../services/animeService'
 
 class GamePage extends Component {
   state = { 
-    showsForGame: {},
+    showsForGame: [],
     currentShow1: null,
     currentShow2: null
    }
 
-   
-
    async componentDidMount() {
-     //Get Damiens passed in props for user choices ---> Pass to gameStart()
-     const getShowsForGameResults = await animeAPI.getRandomShowsForGameStart()
-     //Do some data massaging OR do some data massaging on API side
-     //Map each shows id, title, img, synopsis, etc. to showsForGameArray
-     this.setState({showsForGame: getShowsForGameResults})
-     //1. Get first 2 shows, set state to match the 2 shows
-     //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
-     //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
-     
+     const showsForGame = await animeAPI.getRandomShowsForGameStart()
+     console.log(showsForGame)
+     this.setState({showsForGame})
    }
+    
+    //Map each shows id, title, img, synopsis, etc. to showsForGameArray
+    //this.setState({showsForGame: getShowsForGameResults})
+    //1. Get first 2 shows, set state to match the 2 shows
+    //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
+    //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
+   
 
    handleChoose = () => {
      //CHECK FOR END GAME WIN CONDITIONS FIRST
+     //
     // e.preventDefault()
     //4. Splice select show idx from array and remove it
     //5. Select 2 more shows (random or not) 
@@ -34,22 +34,40 @@ class GamePage extends Component {
     }
 
   render() { 
-    return ( 
+    const { showsForGame } = this.state
+    // const { currentShow1 } = this.state.currentShow1
+    // const { currentShow2 } = this.state.currentShow2
+    //console.log(`component state: ${this.state.showsForGame}`)
+    let isLoading = true
+    if(this.state.showsForGame.length > 0) {
+      isLoading = false
+    }
+    return (       
       <>
-      <h1>Anime Battle!!!</h1>
-      <AnimeCard 
-        // title={this.state.currentShow1.title}
-        // image={this.state.currentShow1.image}
-        // synopsis={this.state.currentShow1.synopsis} 
-        />
-      <button onClick={this.handleChoose()}>Choose Show 1</button>
-      <h2>VS.</h2>
-      <AnimeCard 
-        // title={this.state.currentShow2.title}
-        // image={this.state.currentShow2.image}
-        // synopsis={this.state.currentShow2.synopsis} 
-        />
-      <button onClick={this.handleChoose()}>Choose Show 2</button>
+      {isLoading ? 
+        <div>
+          <h1>Loading...</h1>  
+        </div>
+
+        :
+
+      <div>
+        <h1>Anime Battle!!!</h1>
+        <AnimeCard 
+           title={showsForGame[0].title}
+           image={showsForGame[0].image_url}
+           synopsis={showsForGame[0].synopsis} 
+          />
+        <button onClick={this.handleChoose()}>Choose Show 1</button>
+        <h2>VS.</h2>
+        <AnimeCard 
+           title={showsForGame[1].title}
+           image={showsForGame[1].image_url}
+           synopsis={showsForGame[1].synopsis} 
+          />
+        <button onClick={this.handleChoose()}>Choose Show 2</button>
+      </div> 
+      }
       </>
      );
   }
