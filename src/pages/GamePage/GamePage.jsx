@@ -26,11 +26,18 @@ class GamePage extends Component {
     //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
    
 
-   handleChoose = () => {
-     //
-     //4. Splice select show idx from array and remove it
-     //CHECK FOR END GAME WIN CONDITIONS FIRST (showsForGame.length == 2) 
+   handleChoose = (idx) => {
+    //4. Splice select show idx from array and remove it
+    const shows = this.state.showsForGame
+    shows.splice(idx, 1)
+    console.log(shows)
+    //CHECK FOR END GAME WIN CONDITIONS FIRST (showsForGame.length == 2)
+    if (shows.length === 2) {
+    //END GAME
+    //Render game winning page
+    } 
     //5. Select 2 more shows (random or not) 
+    
     //6. Update currentShow1 state with new show
     //7. Update currentShow2 state with new show
     //8. Re-render AnimeCards and let user go again...
@@ -64,7 +71,8 @@ class GamePage extends Component {
            rated={showsForGame[show1Idx].rated}
            episodes={showsForGame[show1Idx].episodes}
           />
-        <button onClick={this.handleChoose(this.state.currentShow1)}>Choose Show 1</button>
+          {/* PASS in the show index to delete*/}
+        <button onClick={() => this.handleChoose(show2Idx)}>Choose Show 1</button>
         <h2>VS.</h2>
         <AnimeCard 
            title={showsForGame[show2Idx].title}
@@ -74,7 +82,8 @@ class GamePage extends Component {
            rated={showsForGame[show2Idx].rated}
            episodes={showsForGame[show2Idx].episodes}
           />
-        <button onClick={this.handleChoose(this.state.currentShow2)}>Choose Show 2</button>
+          {/* PASS in the show index to delete*/}
+        <button onClick={() => this.handleChoose(show1Idx)}>Choose Show 2</button>
       </div> 
       }
       </>
