@@ -5,11 +5,13 @@ import Signup from '../Signup/Signup'
 import Login from '../Login/Login'
 import Landing from '../Landing/Landing'
 import Users from '../Users/Users'
+import AnimeSearch from '../AnimeSearch/AnimeSearch'
 import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
 import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
+import ProfileDetails from '../ProfileDetails/ProfileDetails'
 
 
 class App extends Component {
@@ -26,6 +28,15 @@ class App extends Component {
 
 	handleSignupOrLogin = async() => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
+	}
+	handleAddFriend = async friendId => {
+		const updatedProfile = await profileAPI.friend(friendId)
+		this.setState({ userProfile: updatedProfile })
+	}
+
+	handleRemoveFriend = async friendId => {
+		const updatedProfile = await profileAPI.unfriend(friendId)
+		this.setState({ userProfile: updatedProfile })
 	}
 
 
@@ -61,6 +72,27 @@ class App extends Component {
 		<Route exact path='/login'>
           <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
         </Route>
+    <Route exact path='/anime'
+      render={({match})=>
+      <AnimeDetails 
+      match={match}
+      />
+    }
+    />
+    <Route exact path='/profile'
+      render={({location})=>
+      <ProfileDetails 
+      location={location}
+      userProfile={userProfile}
+      />
+    }
+    />
+    <Route exact path ='/search'
+      render={()=>
+      <AnimeSearch />
+      }
+     />
+    </>
 		<Route 
 			exact path="/users"
 			render={()=> 

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { getAllUsers } from "../../services/userService"
-
+import ProfileCard from '../../components/ProfileCard/ProfileCard'
 class Users extends Component {
   state = {
     users: [],
@@ -11,13 +11,20 @@ class Users extends Component {
     this.setState({ users })
   }
 
+
+
+
+
+
   render() {
     return (
       <>
         <h1>This is a list of all the users.</h1>
-        {this.state.users.map((user) => (
-          <p key={user._id}>{user.name} </p>
-        ))}
+       {this.state.users.map(user =>
+        
+        <ProfileCard/>
+        )}
+       
       </>
     )
   }

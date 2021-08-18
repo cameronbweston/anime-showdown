@@ -39,3 +39,7 @@ export function removeFromUserCollection(mal_id) {
   {mode: "cors"})
   .then(res => res.json())
 }
+
+export function RemoveFromUserColection(){
+
+}
