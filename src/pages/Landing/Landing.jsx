@@ -2,11 +2,11 @@ import SignupForm from '../../components/SignupForm/SignupForm'
 import GameForm from '../../components/GameForm/GameForm'
 
 
-const Landing = ({user}) => {
+const Landing = ({user}, {history}) => {
   return (
     <main className="">
       {user ? (
-        <GameForm user={user} />
+        <GameForm user={user} history={history} />
       ) : (
         <SignupForm />
       )}

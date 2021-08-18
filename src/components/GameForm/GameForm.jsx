@@ -1,86 +1,47 @@
 import React, { Component } from 'react'
-
-let newArray = []
+import { withRouter } from 'react-router-dom'
+  
 
 class GameForm extends Component {
   state = {
     invalidForm: null,
     formData: {
-      type: [],
-      genre: [],
-      rated: [],
+      isTv: false,
+      isManga: false,
+      isMovie: false,
+      isSciFi: false,
+      isFantasy: false,
+      isComedy: false,
+      isDrama: false,
+      isActionAdventure: false,
+      isHorrorPsych: false,
+      isCrimeMystery: false,
+      isG: false,
+      isPG: false,
+      isPG13: false,
+      isR17: false,
+      isRPlus: false
     }
   }
 
   formRef = React.createRef();
 
-
-  handleTypeChange = e => {
-    // this.state.formData.type.push(e.target.value)
-    // this.setState()
-    // console.log(this.state)
-		// const formData = {...this.state.formData, [e.target.name]: e.target.value};
-		// this.setState({
-		// formData,
-		// invalidForm: !this.formRef.current.checkValidity()
-		// });
+  handleChange = e => {
+		const formData = {...this.state.formData, [e.target.name]: e.target.checked ? true : false};
+		this.setState({
+		formData,
+		invalidForm: !this.formRef.current.checkValidity()
+		});
 	};
 
-  handleRatedChange = e => {
-    // this.state.formData.rated.push(e.target.value)
-    // this.setState()
-    // console.log(this.state)
-		// const formData = {...this.state.formData, [e.target.name]: e.target.value};
-		// this.setState({
-		// formData,
-		// invalidForm: !this.formRef.current.checkValidity()
-		// });
-	};
-
-  handleSubmit = history => {
-    if (document.getElementById('scifi').checked) {
-      newArray.push(24, 18, 29, 31, 11)
-      this.state.formData.genre.push(24, 18, 29, 31, 11)
+  handleSubmit = async e => {   
+    const { history } = this.props
+    e.preventDefault() 
+    try {
+      history.push("/gamepage")
+    } catch (err) {
+      console.log(err.message)    }
     }
-    if (document.getElementById('fantasy').checked) {
-      newArray.push(6, 10, 16, 32, 37, 42)
-      this.state.formData.genre.push(6, 10, 16, 32, 37, 42)
-    }
-    if (document.getElementById('comedy').checked) {
-      newArray.push(4, 20, 35)
-      this.state.formData.genre.push(4, 20, 35)
-    }
-    if (document.getElementById('drama').checked) {
-      newArray.push(8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43)
-      this.state.formData.genre.push(8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43)
-    }
-    if (document.getElementById('action').checked) {
-      newArray.push(1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38)
-      this.state.formData.genre.push(1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38)
-    }
-    if (document.getElementById('horror').checked) {
-      newArray.push(5, 32, 14, 37, 40, 41, 42)
-      this.state.formData.genre.push(5, 32, 14, 37, 40, 41, 42)
-    }
-    if (document.getElementById('mystery').checked) {
-      newArray.push(7, 39)
-      this.state.formData.genre.push(7, 39)
-    }
-    console.log('newArray -> ' + newArray)
-    console.log('stateArray -> ' + this.state.formData.genre)
-    // this.state.formData.genre.push(newArray)
-    this.setState()
-
-    console.log(this.state.formData.genre)
-
-    // this.props.history.push('/gamepage');
-
-    // const formData = {}
-    // this.setState({
-    //   formData,
-    //   invalidForm: !this.formRef.current.checkValidity()
-    // })
-  }
 
   render() {
   return ( 
@@ -105,27 +66,24 @@ class GameForm extends Component {
             <p>Are you looking for an anime series, movie, or manga?</p>
             <div className="text-center">
               <input
-                onChange={e => this.handleTypeChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="tv"
                 id="tv"
-                name="tv"
+                name="isTv"
               />
               <label htmlFor="tv">Series</label><br/>
               <input
-                onChange={e => this.handleTypeChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="movie"
                 id="movie"
-                name="movie"
+                name="isMovie"
               />
               <label htmlFor="movie">Movie</label><br/>
               <input
-                onChange={e => this.handleTypeChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="manga"
                 id="manga"
-                name="manga"
+                name="isManga"
               />
               <label htmlFor="manga">Manga</label>
             </div>
@@ -139,51 +97,51 @@ class GameForm extends Component {
               <p>What genre(s) are you interested in?</p>
               <input
                 type="checkbox" 
-                value={[24, 18, 29, 31, 11]}
                 id="scifi"
-                name="scifi"
+                name="isSciFi"
+                onChange={this.handleChange}
               />
               <label htmlFor="scifi">Sci-Fi</label><br/>
               <input
                 type="checkbox" 
-                value={[6, 10, 16, 32, 37, 42]}
                 id="fantasy"
-                name="fantasy"
+                name="isFantasy"
+                onChange={this.handleChange}
               />
               <label htmlFor="fantasy">Fantasy</label><br/>
               <input
                 type="checkbox" 
-                value={[4, 20, 35]}
                 id="comedy"
-                name="comedy"
+                name="isComedy"
+                onChange={this.handleChange}
               />
               <label htmlFor="comedy">Comedy</label><br/>
               <input
                 type="checkbox" 
-                value={[8, 9, 19, 22, 25, 26, 28, 30, 33, 34, 35, 43]}
                 id="drama"
-                name="drama"
+                name="isDrama"
+                onChange={this.handleChange}
               />
               <label htmlFor="drama">Drama</label><br/>
               <input
                 type="checkbox" 
-                value={[1, 2, 3, 13, 17, 21, 23, 27, 31, 36, 38]}
                 id="action"
-                name="action"
+                name="isActionAdventure"
+                onChange={this.handleChange}
               />
               <label htmlFor="action">Action & Adventure</label><br/>
               <input
                 type="checkbox" 
-                value={[5, 32, 14, 37, 40, 41, 42]}
                 id="horror"
-                name="horror"
+                name="isHorrorPsych"
+                onChange={this.handleChange}
               />
               <label htmlFor="horror">Horror & Psychological</label><br/>
               <input
                 type="checkbox" 
-                value={[7, 39]}
                 id="mystery"
-                name="mystery"
+                name="isCrimeMystery"
+                onChange={this.handleChange}
               />
               <label htmlFor="mystery">Crime & Mystery</label>
             </div>
@@ -196,43 +154,38 @@ class GameForm extends Component {
             <div className="text-center">
               <p>What rating(s) would be appropriate?</p>
               <input
-                onChange={e => this.handleRatedChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="g"
                 id="g"
-                name="rated"
+                name="isG"
               />
               <label htmlFor="g">G - All Ages</label><br/>
               <input
-                onChange={e => this.handleRatedChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="pg"
                 id="pg"
-                name="rated"
+                name="isPG"
               />
               <label htmlFor="pg">PG - Children</label><br/>
               <input
-                onChange={e => this.handleRatedChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="pg13"
                 id="pg13"
-                name="rated"
+                name="isPG13"
               />
               <label htmlFor="pg13">PG-13 - Teens 13 or older</label><br/>
               <input
-                onChange={e => this.handleRatedChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="r17"
                 id="r17"
-                name="rated"
+                name="isR17"
               />
               <label htmlFor="r17">R17 - 17+ Recommended (Violence/Profanity)</label><br/>
               <input
-                onChange={e => this.handleRatedChange(e)}
+                onChange={this.handleChange}
                 type="checkbox" 
-                value="r"
                 id="r"
-                name="rated"
+                name="isRPlus"
               />
               <label htmlFor="r" >R+ - Mild Nudity (Violence/Profanity)</label>
             </div>
@@ -242,7 +195,9 @@ class GameForm extends Component {
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInUp flex justify-center">
           <div className="text-3xl font-semibold">
             <button 
-              disabled={this.state.invalidForm}
+              type="submit"
+              onClick={this.handleSubmit}
+              // disabled={this.state.invalidForm}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate-pulse">
               Showdown!
             </button>
