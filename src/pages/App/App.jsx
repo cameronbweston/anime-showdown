@@ -39,7 +39,7 @@ class App extends Component {
 			<>
 				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
 				<Route exact path='/'>
-          <Landing user={user} />
+          <Landing user={user} history={this.props.history}/>
         </Route>
 				<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
@@ -52,7 +52,7 @@ class App extends Component {
 					render={()=> 
 						user ? <Users /> : <Redirect to='/login'/>
 				}/>
-				<Route exact path='/gamePage'>
+				<Route exact path='/gamepage'>
 					<GamePage history={this.props.history}/>
 				</Route>
 			</>
