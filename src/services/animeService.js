@@ -1,6 +1,13 @@
 import * as tokenService from '../services/tokenService'
 const BASE_URL = '/api/anime/'
 
+export function getAnimeDetails(id) {
+  return fetch(`${BASE_URL}getAnimeDetails/${id}`, {
+    headers: {'content-type': 'application/json', 'Authorization': `Bearer ${tokenService.getToken()}`},
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
+
 export function searchAnime(title) {
   return fetch(`${BASE_URL}searchAnime/${title}`, {
     headers: {

@@ -3,6 +3,7 @@ import { Profile } from "../models/profile.js"
 
 export {
   userProfile,
+  getProfileDetails,
   index,
   friend,
   unfriend
@@ -10,7 +11,16 @@ export {
 
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
-  // .populate('media')
+  .populate('animeCollection')
+  // .populate('friends')
+  .then(profile => {
+    res.json(profile)
+  })
+}
+
+function getProfileDetails(req, res) {
+  Profile.findById(req.params.id)
+  .populate('animeCollection')
   // .populate('friends')
   .then(profile => {
     res.json(profile)

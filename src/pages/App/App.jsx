@@ -13,7 +13,6 @@ import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 
-
 class App extends Component {
 	state = {
 		user: authService.getUser(),
@@ -60,6 +59,8 @@ class App extends Component {
 	  
 	render() {
 		const { user, userProfile } = this.state
+		console.log(this.state.location)
+
 		return (
 		<>
 			<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
@@ -77,13 +78,18 @@ class App extends Component {
 				<AnimeDetails 
 				match={match} />}
 			/>
-			<Route exact path='/profile'>
-				{authService.getUser() ?
-					<ProfileDetails history={this.props.history} userProfile={userProfile}/>
-					:
+			<Route 
+				exact path='/profile/:id'
+				render={({ match })=> 
+					authService.getUser() ?
+					<ProfileDetails
+						match={match}
+						userProfile={userProfile}
+					/> 
+					: 
 					<Redirect to='/login' />
 				}
-			</Route>
+			/>
 			<Route exact path ='/search'
 				render={()=>
 				<AnimeSearch />}
@@ -98,6 +104,16 @@ class App extends Component {
 					handleAddToUserCollection={this.handleAddToUserCollection}
 				/>
 			</Route>
+			<Route
+				exact path='/animes/:id'
+				render={({ match })=>
+					authService.getUser() ?
+					<AnimeDetails
+						match={match}
+						userProfile={userProfile}
+					/> : <Redirect to='/login'/>
+				}
+			/>
 		</>
 		)
 	}

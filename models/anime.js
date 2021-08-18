@@ -8,11 +8,14 @@ const animeSchema = new mongoose.Schema(
   {
     mal_id: Number,
     title: String,
-    rating: String,
+    rated: String,
     score: Number,
-    coverImg: String,
+    image_url: String,
     synopsis: String,
     isMovie: Boolean,
+    episodes: Number,
+    type: String,
+    url: String,
     collected_by: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
   },
   {

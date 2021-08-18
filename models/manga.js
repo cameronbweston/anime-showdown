@@ -8,7 +8,7 @@ const mangaSchema = new mongoose.Schema(
   {
     title: String,
     releaseYear: Date,
-    coverImg: String,
+    image: String,
     synopsis: String,
     review: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
   },
