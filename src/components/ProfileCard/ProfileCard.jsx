@@ -12,7 +12,7 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
         >
         <div>
           <h4>{profile.name}</h4>  
-          <img src='/defaultProfileImg.png' alt='' />
+          <img src='/defaultProfileImg.png' alt='avatar' />
         </div>
     </Link>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
