@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { Profile } from '../models/profile.js'
+import { Anime } from '../models/anime.js'
 
 export {
   searchAnime,
@@ -34,6 +36,8 @@ function getRandomShowsForGameStart(req, res) {
 }
 
 function addToUserCollection(req, res) {
-  //Pass in variable to decide if it will be saved to user collection 'want to watch', 'watching', or 'will watch'
+    // adding user's profile_id to req.body (for creating a new resource)
+    console.log(req.user.profile)
+
 }
 

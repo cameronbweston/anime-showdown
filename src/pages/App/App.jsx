@@ -39,24 +39,24 @@ class App extends Component {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
-				<Route exact path='/'>
+		<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+		<Route exact path='/'>
           <Landing user={user} />
         </Route>
-				<Route exact path='/signup'>
+		<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
         </Route>
-				<Route exact path='/login'>
+		<Route exact path='/login'>
           <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
         </Route>
-				<Route 
-					exact path="/users"
-					render={()=> 
-						user ? <Users /> : <Redirect to='/login'/>
-				}/>
-				<Route exact path='/GamePage'>
-					<GamePage history={this.props.history}/>
-				</Route>
+		<Route 
+			exact path="/users"
+			render={()=> 
+				user ? <Users /> : <Redirect to='/login'/>
+		}/>
+		<Route exact path='/GamePage'>
+			<GamePage history={this.props.history} user={user}/>
+		</Route>
 			</>
 		)
 	}

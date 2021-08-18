@@ -15,3 +15,4 @@ const router = Router();
 router.use(decodeUserFromToken)
 router.get('/search/:title', animeCtrl.searchAnime)
 router.get('/getRandomShowsForGameStart', animeCtrl.getRandomShowsForGameStart)
+router.get('/addToUserCollection', checkAuth, animeCtrl.addToUserCollection)
