@@ -52,6 +52,7 @@ class GamePage extends Component {
     const { show1Idx } = this.state
     const { show2Idx } = this.state
 
+    console.log(showsForGame[0])
     if (this.state.gameOver) {
       return (
         <>

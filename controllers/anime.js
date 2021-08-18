@@ -5,14 +5,14 @@ import { Anime } from '../models/anime.js'
 export {
   searchAnime,
   getRandomShowsForGameStart,
-  addToUserCollection
+  addToUserCollection,
+  removeFromUserCollection
 }
 
 const BASE_URL = 'https://api.jikan.moe/v3/'
 // EXAMPLE QUERY:  /search/anime?q=Boku&page=1&genre=12&genre_exclude=0
 
 function searchAnime(req, res) {
-
   axios.get(`${BASE_URL}search/anime?q=${req.params.searchTitle}`)
   .then(result => {
     console.log(result.data); 
@@ -38,6 +38,9 @@ function getRandomShowsForGameStart(req, res) {
 function addToUserCollection(req, res) {
     // adding user's profile_id to req.body (for creating a new resource)
     console.log(req.user.profile)
-
+    console.log(req.body)
 }
 
+function removeFromUserCollection(req, res) {
+
+}
