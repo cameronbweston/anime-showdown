@@ -8,7 +8,8 @@ class GamePage extends Component {
     showsForGame: [],
     show1Idx: null,
     show2Idx: null,
-    gameOver: false
+    gameOver: false,
+    synopsisActive: false
    }
 
    async componentDidMount() {
@@ -48,7 +49,9 @@ class GamePage extends Component {
   }
 
   synopsisToggle() {
-    
+    // if (synopsisActive = true) {
+    //   this.setState({ synopsisActive: false })
+    // }
   }
 
   render() { 
@@ -112,8 +115,12 @@ class GamePage extends Component {
             episodes={showsForGame[show1Idx].episodes}
           />
           <div className="max-w-xl py-3">
-            <div className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full">
-              <span className="font-bold" onClick={this.synopsisToggle}>Synopsis</span>
+            <div 
+              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
+              // className={this.state.synopsisActive ? 'hidden' : ''}
+              // className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"
+            >
+              <span className="font-bold">Synopsis</span>
               <span className="text-gray-400">{showsForGame[show1Idx].synopsis}</span>
             </div>
           </div>
@@ -122,7 +129,7 @@ class GamePage extends Component {
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
           Choose Show 1
         </button>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis">
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
           Synopsis
         </button>
         <p className="text-5xl">VS.</p>
