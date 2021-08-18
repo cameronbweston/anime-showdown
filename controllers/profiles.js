@@ -57,10 +57,13 @@ function unfriend(req, res) {
 }
 
 function index(req, res) {
+  console.log('made it to controller')
+
   Profile.find({})
-  // .populate('media')
+  .populate('animeCollection')
   // .populate('friends')
   .then(profiles => {
+    console.log(profiles)
     res.json(profiles)
   })
 }

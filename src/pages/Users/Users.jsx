@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { getAllUsers } from "../../services/userService"
+import * as profilesAPI from '../../services/profileService'
 import ProfileCard from '../../components/ProfileCard/ProfileCard'
 class Users extends Component {
   state = {
@@ -7,22 +7,24 @@ class Users extends Component {
   }
 
   async componentDidMount() {
-    const users = await getAllUsers()
+    const users = await profilesAPI.getAllProfiles()
     this.setState({ users })
   }
 
-
-
-
-
-
   render() {
+    const {users} = this.state
+
     return (
       <>
-        <h1>This is a list of all the users.</h1>
-       {this.state.users.map(user =>
-        
-        <ProfileCard/>
+        <h1>User Profiles</h1>
+       {users.map(profile =>
+          <ProfileCard
+            profile={profile}
+            key={profile._id}
+            userProfile={this.props.userProfile}
+            handleAddFriend={this.props.handleAddFriend}
+            handleRemoveFriend={this.props.handleRemoveFriend}
+          />
         )}
        
       </>
