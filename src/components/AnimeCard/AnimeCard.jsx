@@ -7,36 +7,36 @@ class AnimeCard extends Component {
   }
 
   render() {
-    const { currentShow1, currentShow2 } = this.props
+    const { title, image, synopsis, score, rated, episodes } = this.props
     return (
       <>
         <div className="min-h-full py-6 flex flex-col justify-center sm:py-12">
           <div className="py-3 sm:max-w-xl sm:mx-auto">
             <center>
-              *only placed here for testing purposes*
+              {/* *only placed here for testing purposes* */}
             </center>
             <div className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8">
               <div className="h-48 overflow-visible w-1/2">
-                <img className="rounded-3xl shadow-2xl animate__animated animate__fadeInLeft" src="https://images-na.ssl-images-amazon.com/images/I/81iDNjn-r3L.jpg" alt=""/>
+                <img className="rounded-3xl shadow-2xl animate__animated animate__fadeInLeft" src={image} alt=""/>
               </div>
               <div className="flex flex-col w-1/2 space-y-4">
                 <div className="flex justify-between items-start">
-                  <h2 className="text-3xl font-bold">Death Note</h2>
+                  <h2 className="text-3xl font-bold">{title}</h2>
                   <div className="bg-yellow-400 font-bold rounded-xl p-2 animate-bounce">
-                    7.2
+                    {score}
                   </div>
                 </div>
                 <div className="flex justify-evenly">
                   <div className="">
-                    <div className="text-sm text-gray-400">Finished Series</div>
-                    <div className="text-lg text-gray-800 text-center">2006</div>
+                    <div className="text-sm text-gray-400">Rated</div>
+                    <div className="text-lg text-gray-800 text-center">{rated}</div>
                   </div>
                   <div className="">
                     <div className="text-sm text-gray-400">Episodes</div>
-                    <div className="text-lg text-gray-800 text-center">37</div>
+                    <div className="text-lg text-gray-800 text-center">{episodes}</div>
                   </div>
                 </div>
-                <p className=" text-gray-400 max-h-40 overflow-y-hidden">Synopsis -- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p className=" text-gray-400 max-h-40 overflow-y-hidden">{synopsis}</p>
               </div>
             </div>
 {/* progress bars below */}

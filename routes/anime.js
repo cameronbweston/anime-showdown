@@ -15,3 +15,5 @@ const router = Router();
 router.use(decodeUserFromToken)
 router.get('/search/:title', animeCtrl.searchAnime)
 router.get('/getRandomShowsForGameStart', animeCtrl.getRandomShowsForGameStart)
+router.post('/addToUserCollection', checkAuth, animeCtrl.addToUserCollection)
+router.delete('/removeFromUserCollection', checkAuth, animeCtrl.removeFromUserCollection)
