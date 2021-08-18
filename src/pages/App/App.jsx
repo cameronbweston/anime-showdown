@@ -61,48 +61,47 @@ class App extends Component {
 	render() {
 		const { user, userProfile } = this.state
 		return (
-			<>
-				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
-				<Route exact path='/'>
-          <Landing user={user} history={this.props.history}/>
-        </Route>
-		<Route exact path='/signup'>
-          <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
-        </Route>
-		<Route exact path='/login'>
-          <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
-        </Route>
-    <Route exact path='/anime'
-      render={({match})=>
-      <AnimeDetails 
-      match={match}
-      />
-    }
-    />
-    <Route exact path='/profile'
-      render={({location})=>
-      <ProfileDetails 
-      location={location}
-      userProfile={userProfile}
-      />
-    }
-    />
-    <Route exact path ='/search'
-      render={()=>
-      <AnimeSearch />
-      }
-     />
-    </>
-		<Route 
-			exact path="/users"
-			render={()=> 
-				user ? <Users /> : <Redirect to='/login'/>
-		}/>
-		<Route exact path='/GamePage'>
-			<GamePage history={this.props.history} 
-				handleAddToUserCollection={this.handleAddToUserCollection}
+		<>
+			<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+			<Route exact path='/'>
+			<Landing user={user} history={this.props.history}/>
+			</Route>
+			<Route exact path='/signup'>
+			<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
+			</Route>
+			<Route exact path='/login'>
+			<Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
+			</Route>
+			<Route exact path='/anime'
+			render={({match})=>
+			<AnimeDetails 
+			match={match}
 			/>
-		</Route>
+			}
+			/>
+			<Route exact path='/profile'
+			render={({location})=>
+			<ProfileDetails 
+			location={location}
+			userProfile={userProfile}
+			/>
+			}
+			/>
+			<Route exact path ='/search'
+			render={()=>
+			<AnimeSearch />
+			}
+			/>
+			<Route 
+				exact path="/users"
+				render={()=> 
+					user ? <Users /> : <Redirect to='/login'/>
+			}/>
+			<Route exact path='/GamePage'>
+				<GamePage history={this.props.history} 
+					handleAddToUserCollection={this.handleAddToUserCollection}
+				/>
+			</Route>
 		</>
 		)
 	}
