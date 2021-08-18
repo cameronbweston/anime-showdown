@@ -22,7 +22,7 @@ class GamePage extends Component {
        //Add counter for times each show was clicked
     })
    }
-    
+
    handleChoose = (idx) => {
     //Splice selected show idx from array and remove it
     const showsForGame = this.state.showsForGame
@@ -74,6 +74,7 @@ class GamePage extends Component {
     if(this.state.showsForGame.length > 0) {
       isLoading = false
     }
+    
     return (       
       <>
       {isLoading ? 
