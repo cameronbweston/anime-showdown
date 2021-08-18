@@ -13,8 +13,8 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/search/:title', animeCtrl.searchAnime)
+router.get('/search/:title', checkAuth, animeCtrl.searchAnime)
 router.get('/getAnimeDetails/:id', checkAuth, animeCtrl.getAnimeDetails)
-router.get('/getRandomShowsForGameStart', animeCtrl.getRandomShowsForGameStart)
+router.get('/getRandomShowsForGameStart', checkAuth, animeCtrl.getRandomShowsForGameStart)
 router.post('/addToUserCollection', checkAuth, animeCtrl.addToUserCollection)
 router.delete('/removeFromUserCollection/:id', checkAuth, animeCtrl.removeFromUserCollection)

@@ -96,8 +96,11 @@ function addToUserCollection(req, res) {
 }
 
 function removeFromUserCollection(req, res) {
-  // finding the media doc
-  Anime.findOne({ mal_id: req.params.id })
+  console.log(req)
+  console.log(req.params.id)
+  console.log(req.body.id)
+
+  Anime.findById(req.params.id)
   .then(anime => {
     // removing the user's profile _id from the media doc's collected_by array
     anime.collected_by.remove({ _id: req.user.profile })
@@ -107,7 +110,7 @@ function removeFromUserCollection(req, res) {
       Profile.findById(req.user.profile)
       .then(profile => {
         // find the index of the media doc in the user's profile's media array
-        let animeIdx = profile.animeCollection.findIndex(anime => anime.mal_id === req.body.mal_id)
+        let animeIdx = profile.animeCollection.findIndex(anime => anime._id === req.params.id)
         // then remove it
         profile.animeCollection.splice(animeIdx, 1)
         profile.save()

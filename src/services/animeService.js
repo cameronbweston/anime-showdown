@@ -39,11 +39,10 @@ export function addToUserCollection(anime) {
 
 export function removeFromUserCollection(mal_id) {
   //Pass in variable to decide if it will be saved to user collection 'want to watch', 'watching', or 'will watch'
-  return fetch(
-    `${BASE_URL}removeFromUserCollection/${mal_id}`,
+  return fetch(`${BASE_URL}removeFromUserCollection/${mal_id}`,
     {
       method: 'DELETE',
-      headers: {'Authorization': 'Bearer ' + tokenService.getToken()},
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
     },
     { mode: "cors" })
   .then((res) => res.json())
