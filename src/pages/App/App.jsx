@@ -4,12 +4,11 @@ import NavBar from '../../components/NavBar/NavBar'
 import Signup from '../Signup/Signup'
 import Login from '../Login/Login'
 import Landing from '../Landing/Landing'
-import * as authService from '../../services/authService'
 import Users from '../Users/Users'
+import * as authService from '../../services/authService'
 import * as profileAPI from '../../services/profileService'
-
+import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
-
 import GamePage from '../GamePage/GamePage'
 
 
@@ -37,29 +36,42 @@ class App extends Component {
 		}
 	}
 
+	handleAddToUserCollection = async anime => {
+		const updatedProfile = await animeAPI.addToUserCollection(anime)
+		this.setState({userProfile: updatedProfile})
+	  }
+	
+	handleRemoveFromUserCollection = async mal_id => {
+		const updatedProfile = await animeAPI.removeFromUserCollection(mal_id)
+		this.setState({userProfile: updatedProfile})
+	  }
+
+	  
 	render() {
 		const { user, userProfile } = this.state
 		return (
 			<>
-				<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
-				<Route exact path='/'>
+		<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+		<Route exact path='/'>
           <Landing user={user} />
         </Route>
-				<Route exact path='/signup'>
+		<Route exact path='/signup'>
           <Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
         </Route>
-				<Route exact path='/login'>
+		<Route exact path='/login'>
           <Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
         </Route>
-				<Route 
-					exact path="/users"
-					render={()=> 
-						user ? <Users /> : <Redirect to='/login'/>
-				}/>
-				<Route exact path='/gamePage'>
-					<GamePage history={this.props.history}/>
-				</Route>
-			</>
+		<Route 
+			exact path="/users"
+			render={()=> 
+				user ? <Users /> : <Redirect to='/login'/>
+		}/>
+		<Route exact path='/GamePage'>
+			<GamePage history={this.props.history} 
+				handleAddToUserCollection={this.handleAddToUserCollection}
+			/>
+		</Route>
+		</>
 		)
 	}
 }

@@ -6,12 +6,14 @@ export {
 
 const animeSchema = new mongoose.Schema(
   {
+    mal_id: Number,
     title: String,
-    releaseYear: Date,
+    rating: String,
+    score: Number,
     coverImg: String,
     synopsis: String,
     isMovie: Boolean,
-    review: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
+    collected_by: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
   },
   {
     timestamps: true,

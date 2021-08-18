@@ -1,16 +1,18 @@
 import axios from 'axios'
+import { Profile } from '../models/profile.js'
+import { Anime } from '../models/anime.js'
 
 export {
   searchAnime,
   getRandomShowsForGameStart,
-  addToUserCollection
+  addToUserCollection,
+  removeFromUserCollection
 }
 
 const BASE_URL = 'https://api.jikan.moe/v3/'
 // EXAMPLE QUERY:  /search/anime?q=Boku&page=1&genre=12&genre_exclude=0
 
 function searchAnime(req, res) {
-
   axios.get(`${BASE_URL}search/anime?q=${req.params.searchTitle}`)
   .then(result => {
     console.log(result.data); 
@@ -34,6 +36,54 @@ function getRandomShowsForGameStart(req, res) {
 }
 
 function addToUserCollection(req, res) {
-  //Pass in variable to decide if it will be saved to user collection 'want to watch', 'watching', or 'will watch'
+    // adding user's profile_id to req.body (for creating a new resource)
+    console.log(req.user.profile)
+    console.log(req.body)
+
+    req.body.collected_by = req.user.profile
+    // find the profile of the logged in user
+    Profile.findById(req.user.profile)
+    .then(profile => {
+      console.log(`profile: ${profile}`)
+      // check to see if the media exists in the database
+      Anime.findOne({mal_id: req.body.mal_id})
+      .then(anime =>  {
+        // if a matching media is found
+        if (anime) {
+          // add the user's profile id to the media.collected_by
+          anime.collected_by.push(req.user.profile)
+          anime.save()
+          .then(anime => {
+            // push the updated media document into the user's profile
+            profile.animeCollection.push(anime._id)
+            profile.save()
+            // populate to keep userProfile accurate in <App> state
+            profile.populate('animeCollection').execPopulate()
+            .then((profile) => {
+              // sending back the freshly updated, fully populated profile document
+              res.json(profile)
+            })
+          })
+        } else {
+          //create and add a new one
+          Anime.create(req.body)
+          .then(anime => {
+            profile.media.push(anime._id)
+            profile.save()
+            profile.populate('animeCollection').execPopulate()
+            .then((profile) => {
+              // return the freshly update, fully populated profile document
+              res.json(profile)
+            })
+          })
+        }
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
+function removeFromUserCollection(req, res) {
+
+}

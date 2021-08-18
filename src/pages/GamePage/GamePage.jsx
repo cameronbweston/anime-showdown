@@ -1,41 +1,75 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
 
 class GamePage extends Component {
   state = { 
     showsForGame: [],
-    currentShow1: null,
-    currentShow2: null
+    show1Idx: null,
+    show2Idx: null,
+    gameOver: false
    }
 
    async componentDidMount() {
      const showsForGame = await animeAPI.getRandomShowsForGameStart()
-     console.log(showsForGame)
-     this.setState({showsForGame})
+     const show1Idx = 0
+     const show2Idx = 1
+     this.setState({
+       showsForGame,
+       show1Idx,
+       show2Idx
+       //Add counter for times each show was clicked
+    })
    }
-    
-    //Map each shows id, title, img, synopsis, etc. to showsForGameArray
-    //1. Get first 2 shows, set state to match the 2 shows
-    //2. const currentShow1Idx = showsForGame.findIndex(currentShow1)
-    //3. const currentShow2Idx = showsForGame.findIndex(currentShow2)
-   
 
-   handleChoose = () => {
-     //
-     //4. Splice select show idx from array and remove it
-     //CHECK FOR END GAME WIN CONDITIONS (showsForGame.length == 2)
-     //5. Select 2 more shows (random or not) 
-    //6. Update currentShow1 state with new show
-    //7. Update currentShow2 state with new show
-    //8. Re-render AnimeCards and let user go again...
-    }
+   handleChoose = (idx) => {
+    //Splice selected show idx from array and remove it
+    const showsForGame = this.state.showsForGame
+    showsForGame.splice(idx, 1)
+
+    //CHECK FOR END GAME WIN CONDITIONS FIRST (showsForGame.length == 2)
+    if (showsForGame.length === 1) {
+      //Render game winning page
+      const gameOver = true
+      this.setState({gameOver})
+    } 
+    //Select 2 more shows (random or not) 
+    //May need to make sure these random ints are never the same --->
+    const show1Idx = Math.floor(Math.random() * showsForGame.length)
+    const show2Idx = Math.floor(Math.random() * showsForGame.length)
+
+    // Update the state
+    this.setState({ 
+      showsForGame,
+      show1Idx,
+      show2Idx
+   })
+}
 
   render() { 
     const { showsForGame } = this.state
-    // const { currentShow1 } = this.state.currentShow1
-    // const { currentShow2 } = this.state.currentShow2
-    //console.log(`component state: ${this.state.showsForGame}`)
+    const { show1Idx } = this.state
+    const { show2Idx } = this.state
+
+    console.log(showsForGame[0])
+    if (this.state.gameOver) {
+      return (
+        <>
+          <h1>You Should Watch:</h1>
+          <AnimeCard 
+            title={showsForGame[0].title}
+            image={showsForGame[0].image_url}
+            synopsis={showsForGame[0].synopsis} 
+            score={showsForGame[0].score}
+            rated={showsForGame[0].rated}
+            episodes={showsForGame[0].episodes}
+            />
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.props.handleAddToUserCollection(showsForGame[0])}>Add to Collection</button>
+        </>
+      )
+    }
+
     let isLoading = true
     if(this.state.showsForGame.length > 0) {
       isLoading = false
@@ -53,24 +87,26 @@ class GamePage extends Component {
       <div>
         <h1>Anime Battle!!!</h1>
         <AnimeCard 
-           title={showsForGame[0].title}
-           image={showsForGame[0].image_url}
-           synopsis={showsForGame[0].synopsis} 
-           score={showsForGame[0].score}
-           rated={showsForGame[0].rated}
-           episodes={showsForGame[0].episodes}
+           title={showsForGame[show1Idx].title}
+           image={showsForGame[show1Idx].image_url}
+           synopsis={showsForGame[show1Idx].synopsis} 
+           score={showsForGame[show1Idx].score}
+           rated={showsForGame[show1Idx].rated}
+           episodes={showsForGame[show1Idx].episodes}
           />
-        <button onClick={this.handleChoose}>Choose Show 1</button>
+          {/* PASS in the show index to delete*/}
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>Choose Show 1</button>
         <h2>VS.</h2>
         <AnimeCard 
-           title={showsForGame[1].title}
-           image={showsForGame[1].image_url}
-           synopsis={showsForGame[1].synopsis} 
-           score={showsForGame[1].score}
-           rated={showsForGame[1].rated}
-           episodes={showsForGame[1].episodes}
+           title={showsForGame[show2Idx].title}
+           image={showsForGame[show2Idx].image_url}
+           synopsis={showsForGame[show2Idx].synopsis} 
+           score={showsForGame[show2Idx].score}
+           rated={showsForGame[show2Idx].rated}
+           episodes={showsForGame[show2Idx].episodes}
           />
-        <button onClick={this.handleChoose}>Choose Show 2</button>
+          {/* PASS in the show index to delete*/}
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>Choose Show 2</button>
       </div> 
       }
       </>
@@ -79,10 +115,3 @@ class GamePage extends Component {
 }
  
 export default GamePage; 
-
-/* 
-1. Get 2 random show indexes (Or first 2 if pre-randomized) from this.state.showsForGameArray
-2. P̶a̶s̶s̶ s̶h̶o̶w̶.̶i̶d̶,̶ s̶h̶o̶w̶.̶t̶i̶t̶l̶e̶,̶ s̶h̶o̶w̶.̶i̶m̶g̶,̶ s̶h̶o̶w̶.̶s̶y̶n̶o̶p̶s̶i̶s̶ A̶S̶ P̶R̶O̶P̶S̶,̶ d̶o̶w̶n̶ t̶o̶ a̶n̶i̶m̶e̶ c̶a̶r̶d̶ f̶o̶r̶ d̶i̶s̶p̶l̶a̶y̶i̶n̶g̶
-3. Either pass show.id down to AnimeCard or set state to hold show1.id and show2.id so it knows which one is chosen and passed to HANDLECHOOSE()
-4. handleChoose() ---> Check if 2 shows left in array ---> Render GAMEWINNINGPAGE
-*/
