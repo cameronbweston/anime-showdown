@@ -9,6 +9,6 @@ export {
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.post('/signup', checkAuth, authCtrl.signup)
-router.post('/login', checkAuth, authCtrl.login)
+router.post('/signup', authCtrl.signup)
+router.post('/login', authCtrl.login)
 /*---------- Protected Routes ----------*/

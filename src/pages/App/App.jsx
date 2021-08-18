@@ -64,33 +64,29 @@ class App extends Component {
 		<>
 			<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
 			<Route exact path='/'>
-			<Landing user={user} history={this.props.history}/>
+				<Landing user={user} history={this.props.history}/>
 			</Route>
 			<Route exact path='/signup'>
-			<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
+				<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
 			</Route>
 			<Route exact path='/login'>
-			<Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
+				<Login handleSignupOrLogin={this.handleSignupOrLogin} history={this.props.history}/>
 			</Route>
 			<Route exact path='/anime'
-			render={({match})=>
-			<AnimeDetails 
-			match={match}
+				render={({match})=>
+				<AnimeDetails 
+				match={match} />}
 			/>
-			}
-			/>
-			<Route exact path='/profile'
-			render={({location})=>
-			<ProfileDetails 
-			location={location}
-			userProfile={userProfile}
-			/>
-			}
-			/>
+			<Route exact path='/profile'>
+				{authService.getUser() ?
+					<ProfileDetails history={this.props.history} userProfile={userProfile}/>
+					:
+					<Redirect to='/login' />
+				}
+			</Route>
 			<Route exact path ='/search'
-			render={()=>
-			<AnimeSearch />
-			}
+				render={()=>
+				<AnimeSearch />}
 			/>
 			<Route 
 				exact path="/users"
