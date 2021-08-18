@@ -39,6 +39,49 @@ function addToUserCollection(req, res) {
     // adding user's profile_id to req.body (for creating a new resource)
     console.log(req.user.profile)
     console.log(req.body)
+
+    req.body.collected_by = req.user.profile
+    // find the profile of the logged in user
+    Profile.findById(req.user.profile)
+    .then(profile => {
+      console.log(`profile: ${profile}`)
+      // check to see if the media exists in the database
+      Anime.findOne({mal_id: req.body.mal_id})
+      .then(anime =>  {
+        // if a matching media is found
+        if (anime) {
+          // add the user's profile id to the media.collected_by
+          anime.collected_by.push(req.user.profile)
+          anime.save()
+          .then(anime => {
+            // push the updated media document into the user's profile
+            profile.animeCollection.push(anime._id)
+            profile.save()
+            // populate to keep userProfile accurate in <App> state
+            profile.populate('animeCollection').execPopulate()
+            .then((profile) => {
+              // sending back the freshly updated, fully populated profile document
+              res.json(profile)
+            })
+          })
+        } else {
+          //create and add a new one
+          Anime.create(req.body)
+          .then(anime => {
+            profile.media.push(anime._id)
+            profile.save()
+            profile.populate('animeCollection').execPopulate()
+            .then((profile) => {
+              // return the freshly update, fully populated profile document
+              res.json(profile)
+            })
+          })
+        }
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
 function removeFromUserCollection(req, res) {
