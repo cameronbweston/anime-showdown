@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
+import './GamePage.css'
 
 class GamePage extends Component {
   state = { 
@@ -78,25 +79,42 @@ class GamePage extends Component {
     return (       
       <>
       {isLoading ? 
-        <div>
-          <h1>Loading...</h1>  
-        </div>
+        <>
+          <div class="flex flex-col justify-center items-center h-screen">
+            <div className="flex justify-center">
+              <div className="text-5xl mb-8">LOADING</div>  
+            </div>
+            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
+          </div>
+        </>
 
         :
 
-      <div>
-        <h1>Anime Battle!!!</h1>
-        <AnimeCard 
-           title={showsForGame[show1Idx].title}
-           image={showsForGame[show1Idx].image_url}
-           synopsis={showsForGame[show1Idx].synopsis} 
-           score={showsForGame[show1Idx].score}
-           rated={showsForGame[show1Idx].rated}
-           episodes={showsForGame[show1Idx].episodes}
+      <>
+      <div className="flex flex-col justify-center items-center">
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight my-10">
+          <div className="text-3xl font-semibold">
+            Choose which anime moves on to the next round!
+          </div>
+        </div>
+      </div>
+
+      <div className="w-screen border flex">
+          <AnimeCard 
+            title={showsForGame[show1Idx].title}
+            image={showsForGame[show1Idx].image_url}
+            synopsis={showsForGame[show1Idx].synopsis} 
+            score={showsForGame[show1Idx].score}
+            rated={showsForGame[show1Idx].rated}
+            episodes={showsForGame[show1Idx].episodes}
           />
+          <div className="border h-full"></div>
+      </div>
           {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>Choose Show 1</button>
-        <h2>VS.</h2>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
+          Choose Show 1
+        </button>
+        <p className="text-5xl">VS.</p>
         <AnimeCard 
            title={showsForGame[show2Idx].title}
            image={showsForGame[show2Idx].image_url}
@@ -106,8 +124,10 @@ class GamePage extends Component {
            episodes={showsForGame[show2Idx].episodes}
           />
           {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>Choose Show 2</button>
-      </div> 
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>
+          Choose Show 2
+        </button>
+      </> 
       }
       </>
      );

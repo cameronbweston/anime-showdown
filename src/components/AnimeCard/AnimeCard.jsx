@@ -10,8 +10,8 @@ class AnimeCard extends Component {
     const { title, image, synopsis, score, rated, episodes } = this.props
     return (
       <>
-        <div className="min-h-full py-6 flex flex-col justify-center sm:py-12">
-          <div className="py-3 sm:max-w-xl sm:mx-auto">
+        {/* <div className="min-h-full py-6 flex flex-col justify-center sm:py-12"> */}
+          <div className="py-3 sm:max-w-xl">
             <center>
               {/* *only placed here for testing purposes* */}
             </center>
@@ -61,7 +61,7 @@ class AnimeCard extends Component {
             </div>
 {/* progress bars above */}
           </div>
-        </div>
+        {/* </div> */}
       </>
     )
   }
