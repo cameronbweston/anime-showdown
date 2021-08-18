@@ -38,6 +38,9 @@ class AnimeDetails extends Component {
                 <button onClick={() => this.handleRemoveFromUserCollection(anime._id)}>
                     Remove From Collection
                 </button>
+                {/* 
+                    TODO: Add User Review Section
+                */}
                 </>
              );
         }
