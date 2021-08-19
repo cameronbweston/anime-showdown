@@ -48,15 +48,6 @@ class GamePage extends Component {
    })
   }
 
-  synopsisToggle() {
-    if (this.state.synopsisActive) {
-      this.setState({ synopsisActive: false })
-    }
-    if (!this.state.synopsisActive) {
-      this.setState({ synopsisActive: true })
-    }
-  }
-
   render() { 
     const { showsForGame } = this.state
     const { show1Idx } = this.state
@@ -120,6 +111,9 @@ class GamePage extends Component {
             score={showsForGame[show1Idx].score}
             rated={showsForGame[show1Idx].rated}
             episodes={showsForGame[show1Idx].episodes}
+            showIdx={this.state.show1Idx}
+            showsForGame={this.state.showsForGame}
+            handleChoose={this.handleChoose}
           />
           
       {/* </div> */}
@@ -138,6 +132,8 @@ class GamePage extends Component {
            score={showsForGame[show2Idx].score}
            rated={showsForGame[show2Idx].rated}
            episodes={showsForGame[show2Idx].episodes}
+           showIdx={this.state.show2Idx}
+           handleChoose={this.handleChoose}
           />
           {/* PASS in the show index to delete*/}
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>
