@@ -24,7 +24,7 @@ function create(req, res) {
             anime.review.push(review._id)
             anime.save()
             .then(()=>{
-                res.redirect(`/anime/${anime.id}`)
+                res.json(review)
             })
         })
     })
@@ -34,6 +34,7 @@ function update(req, res) {
     Review.findByIdAndUpdate(req.params.id)
     .populate('reviews')
     .then((review)=>{
+        res.json(review)
 
     })
 }
