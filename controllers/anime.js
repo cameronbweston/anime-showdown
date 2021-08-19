@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Profile } from '../models/profile.js'
 import { Anime } from '../models/anime.js'
+import { format } from 'morgan'
 
 export {
   searchAnime,
@@ -33,15 +34,33 @@ function searchAnime(req, res) {
 }
 
 function getRandomShowsForGameStart(req, res) {
-  console.log(req.body)
   let limit = 10
-  //const genre1 = req.body.genre1
-  //const genre2 = req.body.genre2
-  //const genre3 = req.body.genre3
+  let formatString = ''
+  let genreString = ''
+  let ratingString = ''
+  let isManga = req.body.isManga
+
+  if (req.body.isTv) { formatString += '&type=tv'}
+  if (req.body.isMovie) { formatString += '&type=movie'}
+  if (req.body.isSciFi) { genreString += '&genre=18,24,29'}
+  if (req.body.isFantasy) { genreString += '&genre=10,16'}
+  if (req.body.isComedy) { genreString += '&genre=4,20'}
+  if (req.body.isDrama) { genreString += '&genre=8,41'}
+  if (req.body.isActionAdventure) { genreString += '&genre=1,2'}
+  if (req.body.isHorrorPsych) { genreString += '&genre=14,40'}
+  if (req.body.isCrimeMystery) { genreString += '&genre=7,39,41'}
+  if (req.body.isG) { ratingString += '&rated=g'}
+  if (req.body.isPG) { ratingString += '&rated=pg'}
+  if (req.body.isPG13) { ratingString += '&rated=pg13'}
+  if (req.body.isR17) { ratingString += '&rated=r17'}
+  if (req.body.isRPlus) { ratingString += '&rated=r'}
+
+  console.log(req.body)
+  console.log(`genreString: ${genreString}`)
   //example call: https://api.jikan.moe/v3/search/anime?q=attack on titan
-    axios.get(`${BASE_URL}search/anime?q=Dragon Ball Z&page=1&limit=${limit}`)
+    axios.get(`${BASE_URL}search/anime?q=&page=1${genreString}&order_by=members&sort=desc&limit=${limit}`)
     .then(result => {
-      //console.log(result.data.results)
+      console.log(result.data.results)
       res.json(result.data.results)
   })
   .catch((err) => console.log(err.message));
