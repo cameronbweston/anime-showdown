@@ -11,4 +11,7 @@ export {
   /*---------- Public Routes ----------*/
 
 /*---------- Protected Routes ----------*/
+router.use(decodeUserFromToken)
+router.get('/', reviewsCtrl.index)
 router.post('/:id', reviewsCtrl.create)
+router.put('/:id', reviewsCtrl.update)
