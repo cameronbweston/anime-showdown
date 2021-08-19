@@ -34,7 +34,7 @@ function friend(req, res) {
     // save the document
     profile.save()
     // populate the subdocs
-    //profile.populate('media').populate('friends').execPopulate()
+    profile.populate('animeCollection').populate('friends').execPopulate()
     .then(()=> {
       res.json(profile)
     })
@@ -43,11 +43,10 @@ function friend(req, res) {
 
 function unfriend(req, res) {
   Profile.findById(req.user.profile)
-  .populate('animeCollection')
-  .populate('friends')
   .then(profile => {
     profile.friends.remove({ _id: req.params.id })
     profile.save()
+    profile.populate('animeCollection').populate('friends').execPopulate()
     .then(()=> {
       res.json(profile)
     })
