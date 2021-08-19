@@ -31,11 +31,6 @@ class App extends Component {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
 
-	handleEditProfile = async() => {
-		const updatedProfile = await profileAPI.handleEditProfile()
-		this.setState({ userProfile: updatedProfile })
-	}
-
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
 		this.setState({ userProfile: updatedProfile })
@@ -74,6 +69,7 @@ class App extends Component {
 			<Route exact path='/'>
 				<Landing 
 					user={user} 
+					userProfile={userProfile}
 					history={this.props.history}
 					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
 				/>
@@ -92,8 +88,7 @@ class App extends Component {
 			<Route exact path='/settings'>
 				<ProfileEdit 
 					userProfile={userProfile}
-					history={this.props.history}
-					hadleEditProfile={this.handleEditProfile}/>
+					history={this.props.history}/>
 			</Route>
 			<Route 
 				exact path='/profile/:id'

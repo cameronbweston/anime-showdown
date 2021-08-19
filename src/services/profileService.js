@@ -1,14 +1,13 @@
 import * as tokenService from "./tokenService"
 const BASE_URL = "/api/profiles/"
 
-export function handleEditProfile() {
-  return fetch(`${BASE_URL}/edit/`,
-    {
-      method: 'PATCH',
-      headers: { Authorization: "Bearer " + tokenService.getToken() }
-    },
-    { mode: "cors" }
-    ).then((res) => res.json())
+export function editProfile(formData) {
+  return fetch(`${BASE_URL}edit`, {
+    method: 'POST',
+    headers: new Headers({ 'Content-Type': 'application/json', Authorization: "Bearer " + tokenService.getToken()}),
+    body: JSON.stringify(formData),
+  })
+  .then(res => res.json())
 }
 
 export function getUserProfile() {

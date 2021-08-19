@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as authService from '../../services/authService'
+import * as profilesAPI from '../../services/profileService'
 
 
 class ProfileEdit extends Component {
@@ -15,10 +15,10 @@ class ProfileEdit extends Component {
   }
 
   handleSubmit = async e => {
-    const { history, handleEditProfile } = this.props
+    const { history } = this.props
     e.preventDefault()
     try {
-      handleEditProfile()
+      await profilesAPI.editProfile(this.state)
       history.push("/")
     } 
     catch (err) {

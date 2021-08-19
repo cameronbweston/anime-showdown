@@ -7,6 +7,7 @@ const Landing = (props) => {
       {props.user ? (
         <GameForm 
         user={props.user} 
+        userProfile={props.userProfile}
         history={props.history}
         getRandomShowsForGameStart={props.getRandomShowsForGameStart}
         />
