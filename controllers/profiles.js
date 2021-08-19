@@ -3,9 +3,25 @@ import { Profile } from "../models/profile.js"
 export {
   userProfile,
   getProfileDetails,
+  edit,
   index,
   friend,
   unfriend
+}
+
+function edit(req, res) {
+  console.log(req.body)
+  console.log(req.user)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.name = req.body.name
+    profile.email = req.body.email
+    profile.save()
+    profile.populate('animeCollection').populate('friends').execPopulate()
+    .then(()=> {
+      res.json(profile)
+    })
+  })
 }
 
 function userProfile(req, res) {
@@ -34,7 +50,7 @@ function friend(req, res) {
     // save the document
     profile.save()
     // populate the subdocs
-    //profile.populate('media').populate('friends').execPopulate()
+    profile.populate('animeCollection').populate('friends').execPopulate()
     .then(()=> {
       res.json(profile)
     })
@@ -43,11 +59,10 @@ function friend(req, res) {
 
 function unfriend(req, res) {
   Profile.findById(req.user.profile)
-  .populate('animeCollection')
-  .populate('friends')
   .then(profile => {
     profile.friends.remove({ _id: req.params.id })
     profile.save()
+    profile.populate('animeCollection').populate('friends').execPopulate()
     .then(()=> {
       res.json(profile)
     })

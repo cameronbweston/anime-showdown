@@ -1,14 +1,18 @@
 import SignupForm from '../../components/SignupForm/SignupForm'
 import GameForm from '../../components/GameForm/GameForm'
 
-
-const Landing = ({user}, {history}) => {
+const Landing = (props) => {
   return (
     <main className="">
-      {user ? (
-        <GameForm user={user} history={history} />
+      {props.user ? (
+        <GameForm 
+        user={props.user} 
+        userProfile={props.userProfile}
+        history={props.history}
+        getRandomShowsForGameStart={props.getRandomShowsForGameStart}
+        />
       ) : (
-        <SignupForm />
+        <SignupForm handleSignupOrLogin={props.handleSignupOrLogin} history={props.history}/>
       )}
     </main>
   )

@@ -84,6 +84,26 @@ const NavBar = ({ user, handleLogout }) => {
 									)}
 								</Menu.Item>
 								<Menu.Item>
+								{({ active }) => (
+										<a
+											href={`/friends`}
+											className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+										>
+											Friends
+										</a>
+									)}
+								</Menu.Item>
+								<Menu.Item>
+								{({ active }) => (
+										<a
+											href={`/settings`}
+											className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+										>
+											Settings
+										</a>
+									)}
+								</Menu.Item>
+								<Menu.Item>
 									{({ active }) => (
 										<Link
 											to="" onClick={handleLogout}
@@ -200,10 +220,30 @@ const NavBar = ({ user, handleLogout }) => {
 								<Menu.Item>
 									{({ active }) => (
 										<a
-											href={`/profile/${user.profile}`}
+											href={`/profile/${user?.profile}`}
 											className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
 										>
 											Profile
+										</a>
+									)}
+								</Menu.Item>
+								<Menu.Item>
+								{({ active }) => (
+										<a
+											href={`/friends`}
+											className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+										>
+											Friends
+										</a>
+									)}
+								</Menu.Item>
+								<Menu.Item>
+								{({ active }) => (
+										<a
+											href={`/settings`}
+											className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+										>
+											Settings
 										</a>
 									)}
 								</Menu.Item>

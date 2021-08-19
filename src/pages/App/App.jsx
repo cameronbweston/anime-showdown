@@ -12,6 +12,8 @@ import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
+import ProfileEdit from '../ProfileEdit/ProfileEdit'
+import Friends from '../Friends/Friends'
 
 class App extends Component {
 	state = {
@@ -28,6 +30,7 @@ class App extends Component {
 	handleSignupOrLogin = async() => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
+
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
 		this.setState({ userProfile: updatedProfile })
@@ -62,13 +65,19 @@ class App extends Component {
 	  
 	render() {
 		const { user, userProfile } = this.state
-		console.log(this.state.location)
+		console.log(userProfile)
 
 		return (
 		<>
 			<NavBar user={user} userProfile={userProfile} handleLogout={this.handleLogout} history={this.props.history} />
 			<Route exact path='/'>
-				<Landing user={user} history={this.props.history}/>
+				<Landing 
+					user={user} 
+					userProfile={userProfile}
+					history={this.props.history}
+					handleSignupOrLogin={this.handleSignupOrLogin}
+					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
+				/>
 			</Route>
 			<Route exact path='/signup'>
 				<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>
@@ -81,6 +90,11 @@ class App extends Component {
 				<AnimeDetails 
 				match={match} />}
 			/>
+			<Route exact path='/settings'>
+				<ProfileEdit 
+					userProfile={userProfile}
+					history={this.props.history}/>
+			</Route>
 			<Route 
 				exact path='/profile/:id'
 				render={({ match })=> 
@@ -109,6 +123,16 @@ class App extends Component {
 							: 
 							<Redirect to='/login'/>
 			}/>
+			<Route 
+				exact path='/friends'
+				render={() => 
+					<Friends 
+						userProfile={userProfile}
+						handleAddFriend={this.handleAddFriend}
+						handleRemoveFriend={this.handleRemoveFriend}
+					/>
+				}
+			/>
 			<Route exact path='/GamePage'>
 				<GamePage 
 					history={this.props.history} 

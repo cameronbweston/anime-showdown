@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-  
+import React, { Component } from 'react' 
 
 class GameForm extends Component {
   state = {
@@ -37,6 +35,7 @@ class GameForm extends Component {
   handleSubmit = async e => {   
     const { history } = this.props
     e.preventDefault() 
+    this.props.getRandomShowsForGameStart(this.state.formData)
     try {
       history.push("/gamepage")
     } catch (err) {
@@ -44,13 +43,14 @@ class GameForm extends Component {
     }
 
   render() {
+    console.log(this.props)
   return ( 
     <div className="flex flex-col justify-center items-center">
 
       {/* WELCOME BUBBLE */}
       <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
         <div className="text-3xl font-semibold">
-          Welcome, { this.props.user.name }!
+          Welcome, { this.props.userProfile?.name }!
         </div>
       </div>
 
