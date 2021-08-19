@@ -12,6 +12,7 @@ import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
+import Friends from '../Friends/Friends'
 
 class App extends Component {
 	state = {
@@ -58,7 +59,7 @@ class App extends Component {
 	  
 	render() {
 		const { user, userProfile } = this.state
-		console.log(this.state.location)
+		console.log(userProfile)
 
 		return (
 		<>
@@ -105,6 +106,16 @@ class App extends Component {
 							: 
 							<Redirect to='/login'/>
 			}/>
+			<Route 
+				exact path='/friends'
+				render={() => 
+					<Friends 
+						userProfile={userProfile}
+						handleAddFriend={this.handleAddFriend}
+						handleRemoveFriend={this.handleRemoveFriend}
+					/>
+				}
+			/>
 			<Route exact path='/GamePage'>
 				<GamePage 
 					history={this.props.history} 
