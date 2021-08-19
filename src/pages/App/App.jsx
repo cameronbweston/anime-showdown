@@ -68,7 +68,7 @@ class App extends Component {
 				<Landing 
 					user={user} 
 					history={this.props.history}
-					getRandomShowsForGameStart={"animeAPI.getRandomShowsForGameStart"}
+					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
 				/>
 			</Route>
 			<Route exact path='/signup'>

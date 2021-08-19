@@ -35,7 +35,7 @@ class GameForm extends Component {
   handleSubmit = async e => {   
     const { history } = this.props
     e.preventDefault() 
-    // this.props.getRandomShowsForGameStart(this.state.formData)
+    this.props.getRandomShowsForGameStart(this.state.formData)
     try {
       history.push("/gamepage")
     } catch (err) {
@@ -43,6 +43,7 @@ class GameForm extends Component {
     }
 
   render() {
+    console.log(this.props)
   return ( 
     <div className="flex flex-col justify-center items-center">
 
