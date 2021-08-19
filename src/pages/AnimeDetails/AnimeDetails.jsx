@@ -19,6 +19,12 @@ class AnimeDetails extends Component {
         this.props.history.push(`/profile/${this.props.userProfile._id}`)
     }
 
+   handleSubmit = async e =>{
+       e.preventDefault()
+       
+   }
+    
+
     render() { 
         const {anime, review} = this.state
         console.log()

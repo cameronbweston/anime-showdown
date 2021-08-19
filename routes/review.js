@@ -12,7 +12,7 @@ export {
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/anime', reviewsCtrl.index)
-router.post('/anime/:id', reviewsCtrl.create)
-router.put('/anime/:id', reviewsCtrl.update)
-router.delete('/anime/:id', reviewsCtrl.delete)
+router.get('/', checkAuth,reviewsCtrl.index)
+router.post('/:id', checkAuth,reviewsCtrl.create)
+router.put('/:id', checkAuth,reviewsCtrl.update)
+router.delete('/:id', checkAuth,reviewsCtrl.delete)

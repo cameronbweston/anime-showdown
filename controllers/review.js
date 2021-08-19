@@ -23,21 +23,19 @@ function deleteReview(req, res) {
 }
 
 function create(req, res) {
-    Review.create(req.body)
-    .then(review=>{
-        Anime.findById(req.params.id)
-        .then(anime =>{
-            anime.review.push(review._id)
-            anime.save()
-            .then(()=>{
-                res.json(review)
-            })
+    Anime.findById(req.params.body)
+        .then((anime)=>{
+            Review.create(req.body)
+                .then((review)=>{
+                    anime.review.push(review)
+                })
+
         })
-    })
+
 }
 
 function update(req, res) {
-    Review.findByIdAndUpdate(req.params.id)
+    Review.findByIdAndUpdate(req.body)
     .populate('reviews')
     .then((review)=>{
         res.json(review)
@@ -46,9 +44,12 @@ function update(req, res) {
 }
 
 function index(req, res) {
-
     Review.findById(req.params.id)
-    .populate('reviews')
+    .populate('psychologicalRating')
+    .populate('goreRating')
+    .populate('sexualContentRating')
+    .populate('userRating')
+    .populate('comment')
     .then(review=>{
         res.json(review)
     })

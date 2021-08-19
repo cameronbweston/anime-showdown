@@ -55,6 +55,10 @@ class App extends Component {
 		this.setState({userProfile: updatedProfile})
 	  }
 
+	handleAddReview = async review=>{
+		
+	}
+
 	  
 	render() {
 		const { user, userProfile } = this.state
