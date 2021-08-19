@@ -1,22 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ProfileCard = ({ user, userProfile, handleAddFriend, handleRemoveFriend}) => {
+const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend}) => {
+  console.log(`profile: ${profile}`)
+  console.log(`profile: ${userProfile}`)
   return (
     <>
     <Link
         to={{
-          pathname: '/profile/:id',
-          state: {user}
+          pathname: `/profile/${profile._id}`,
+          state: {profile}
         }}
-      >
-        <h4>{user.name}</h4>
-      </Link>
-      { !(userProfile?._id === user._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === user._id)) &&
-      <button onClick={() => handleAddFriend(user._id)}>Befriend {user.name}</button> 
+        >
+        <div>
+          <h4>{profile.name}</h4>  
+          <img src='/defaultProfileImg.png' alt='avatar' />
+        </div>
+    </Link>
+      { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleAddFriend(profile._id)}>Add Friend</button> 
       }
-      { !(userProfile?._id === user._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === user._id)) &&
-      <button onClick={() => handleRemoveFriend(user._id)}>Defriend {user.name}</button> 
+      { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleRemoveFriend(profile._id)}>Remove Friend</button> 
       }   
     </>
   );

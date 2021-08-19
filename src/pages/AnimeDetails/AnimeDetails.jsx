@@ -14,7 +14,8 @@ class AnimeDetails extends Component {
     }
 
     async handleRemoveFromUserCollection(animeId) {
-        return await animeAPI.removeFromUserCollection(animeId)    
+        await animeAPI.removeFromUserCollection(animeId)  
+        this.props.history.push(`/profile/${this.props.userProfile._id}`)
     }
 
     render() { 
@@ -35,7 +36,7 @@ class AnimeDetails extends Component {
                 <AnimeCard title={anime.title} image={anime.image_url} synposis={anime.synopsis} score={anime.score} rated={anime.rated} episodes={anime.episodes}/>
 
                 <h1>{anime.synopsis}</h1>
-                <button onClick={() => this.handleRemoveFromUserCollection(anime._id)}>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleRemoveFromUserCollection(anime._id)}>
                     Remove From Collection
                 </button>
                 {/* 
