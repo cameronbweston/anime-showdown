@@ -39,7 +39,7 @@ function getRandomShowsForGameStart(req, res) {
   //const genre2 = req.body.genre2
   //const genre3 = req.body.genre3
   //example call: https://api.jikan.moe/v3/search/anime?q=attack on titan
-    axios.get(`${BASE_URL}search/anime?q=Attack on titan&page=1&limit=${limit}`)
+    axios.get(`${BASE_URL}search/anime?q=Dragon Ball Z&page=1&limit=${limit}`)
     .then(result => {
       //console.log(result.data.results)
       res.json(result.data.results)

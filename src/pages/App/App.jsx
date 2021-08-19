@@ -12,6 +12,7 @@ import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
+import ProfileEdit from '../ProfileEdit/ProfileEdit'
 import Friends from '../Friends/Friends'
 
 class App extends Component {
@@ -29,6 +30,12 @@ class App extends Component {
 	handleSignupOrLogin = async() => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
+
+	handleEditProfile = async() => {
+		const updatedProfile = await profileAPI.handleEditProfile()
+		this.setState({ userProfile: updatedProfile })
+	}
+
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
 		this.setState({ userProfile: updatedProfile })
@@ -82,6 +89,12 @@ class App extends Component {
 				<AnimeDetails 
 				match={match} />}
 			/>
+			<Route exact path='/settings'>
+				<ProfileEdit 
+					userProfile={userProfile}
+					history={this.props.history}
+					hadleEditProfile={this.handleEditProfile}/>
+			</Route>
 			<Route 
 				exact path='/profile/:id'
 				render={({ match })=> 

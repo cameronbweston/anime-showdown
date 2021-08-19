@@ -3,9 +3,14 @@ import { Profile } from "../models/profile.js"
 export {
   userProfile,
   getProfileDetails,
+  edit,
   index,
   friend,
   unfriend
+}
+
+function edit(req, res) {
+  
 }
 
 function userProfile(req, res) {
