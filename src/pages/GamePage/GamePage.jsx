@@ -9,7 +9,6 @@ class GamePage extends Component {
     show1Idx: null,
     show2Idx: null,
     gameOver: false,
-    synopsisActive: false
    }
 
    async componentDidMount() {
@@ -96,14 +95,13 @@ class GamePage extends Component {
 
       <>
       <div className="flex flex-col justify-center items-center">
-        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight my-10">
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
           <div className="text-3xl font-semibold">
             Choose which anime moves on to the next round!
           </div>
         </div>
       </div>
 
-      {/* <div className="w-screen flex justify-evenly"> */}
           <AnimeCard 
             title={showsForGame[show1Idx].title}
             image={showsForGame[show1Idx].image_url}
@@ -116,15 +114,16 @@ class GamePage extends Component {
             handleChoose={this.handleChoose}
           />
           
-      {/* </div> */}
-          {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
-          Choose Show 1
-        </button>
-        {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
-          Synopsis
-        </button> */}
-        <p className="text-5xl">VS.</p>
+        <div className="flex flex-col justify-center items-center">
+          <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
+            <div className="text-6xl font-semibold">
+              VS.
+            </div>
+          </div>
+        </div>
+
+
+
         <AnimeCard 
            title={showsForGame[show2Idx].title}
            image={showsForGame[show2Idx].image_url}
@@ -135,10 +134,6 @@ class GamePage extends Component {
            showIdx={this.state.show2Idx}
            handleChoose={this.handleChoose}
           />
-          {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>
-          Choose Show 2
-        </button>
       </> 
       }
       </>
