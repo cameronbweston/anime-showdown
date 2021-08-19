@@ -23,7 +23,7 @@ class SignupForm extends Component {
     e.preventDefault()
     try {
       await authService.signup(this.state)
-      this.props.handleSignupOrLogin()
+      handleSignupOrLogin()
       history.push("/")
     } catch (err) {
       // updateMessage(err.message)
