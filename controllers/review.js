@@ -4,8 +4,16 @@ import {Anime } from '../models/anime.js'
 export {
     create,
     update,
-    index
+    index,
+    deleteReview as delete
     
+}
+
+function deleteReview(req, res) {
+    Anime.findByIdAndDelete(req.body)
+    .then((review)=>{
+        res.json(review)
+    })
 }
 
 function create(req, res) {
