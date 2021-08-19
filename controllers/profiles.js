@@ -1,5 +1,4 @@
 import { Profile } from "../models/profile.js"
-//import { Anime } from '../models/anime.js'
 
 export {
   userProfile,
@@ -12,7 +11,7 @@ export {
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
   .populate('animeCollection')
-  // .populate('friends')
+  .populate('friends')
   .then(profile => {
     res.json(profile)
   })
@@ -21,14 +20,13 @@ function userProfile(req, res) {
 function getProfileDetails(req, res) {
   Profile.findById(req.params.id)
   .populate('animeCollection')
-  // .populate('friends')
+  .populate('friends')
   .then(profile => {
     res.json(profile)
   })
 }
 
 function friend(req, res) {
-  // Find the user's profile
   Profile.findById(req.user.profile)
   .then(profile => {
     // push the friend's _id into the user's friends array
@@ -45,8 +43,8 @@ function friend(req, res) {
 
 function unfriend(req, res) {
   Profile.findById(req.user.profile)
-  // .populate('media')
-  // .populate('friends')
+  .populate('animeCollection')
+  .populate('friends')
   .then(profile => {
     profile.friends.remove({ _id: req.params.id })
     profile.save()
@@ -57,11 +55,9 @@ function unfriend(req, res) {
 }
 
 function index(req, res) {
-  console.log('made it to controller')
-
   Profile.find({})
   .populate('animeCollection')
-  // .populate('friends')
+  .populate('friends')
   .then(profiles => {
     console.log(profiles)
     res.json(profiles)

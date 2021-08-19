@@ -38,7 +38,6 @@ class App extends Component {
 		this.setState({ userProfile: updatedProfile })
 	}
 
-
 	async componentDidMount() {
 		if (!this.state.userProfile){
 			const userProfile = await profileAPI.getUserProfile()
@@ -63,7 +62,7 @@ class App extends Component {
 
 		return (
 		<>
-			<NavBar user={user} handleLogout={this.handleLogout} history={this.props.history} />
+			<NavBar user={user} userProfile={userProfile} handleLogout={this.handleLogout} history={this.props.history} />
 			<Route exact path='/'>
 				<Landing user={user} history={this.props.history}/>
 			</Route>
@@ -85,6 +84,8 @@ class App extends Component {
 					<ProfileDetails
 						match={match}
 						userProfile={userProfile}
+						handleAddFriend={this.handleAddFriend}
+						handleRemoveFriend={this.handleRemoveFriend}
 					/> 
 					: 
 					<Redirect to='/login' />
@@ -97,7 +98,12 @@ class App extends Component {
 			<Route 
 				exact path="/users"
 				render={()=> 
-					user ? <Users /> : <Redirect to='/login'/>
+					user ? <Users 		
+							userProfile={userProfile}		
+							handleAddFriend={this.handleAddFriend}
+							handleRemoveFriend={this.handleRemoveFriend}/> 
+							: 
+							<Redirect to='/login'/>
 			}/>
 			<Route exact path='/GamePage'>
 				<GamePage 

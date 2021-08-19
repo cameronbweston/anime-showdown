@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend}) => {
+  console.log(`profile: ${profile}`)
+  console.log(`profile: ${userProfile}`)
   return (
     <>
     <Link
