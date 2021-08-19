@@ -41,7 +41,6 @@ class ProfileDetails extends Component {
             
                   <h2>Anime Collection</h2>
                   {animes.map(show =>
-                  //TODO: Write Anime Details page for this Anchor Tag
                     <div>
                         <p>{show.title}</p>
                         <img src={show.image_url} alt="poster" />
@@ -54,7 +53,7 @@ class ProfileDetails extends Component {
                         </button>
                     </div>
                   )}
-                  //TODO: Write a Manga Collection and Manga Details page
+                  {/* TODO: Write a Manga Collection and Manga Details page */}
                 </>
               );
         }
