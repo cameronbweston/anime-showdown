@@ -6,11 +6,20 @@ class AnimeCard extends Component {
     
   }
 
+  synopsisToggle() {
+    if (this.state.synopsisActive) {
+      this.setState({ synopsisActive: false })
+    }
+    if (!this.state.synopsisActive) {
+      this.setState({ synopsisActive: true })
+    }
+  }
+
   render() {
     const { title, image, synopsis, score, rated, episodes} = this.props
     return (
       <>
-        {/* <div className="min-h-full py-6 flex flex-col justify-center sm:py-12"> */}
+        <div className="min-h-full py-6 flex flex-row justify-evenly sm:py-12">
           <div className="py-3 max-w-xl">
             <div className="bg-white shadow-2xl border-gray-100 max-h-80 border sm:rounded-3xl p-8 flex space-x-8">
               <div className="h-48 overflow-visible w-1/2">
@@ -58,7 +67,7 @@ class AnimeCard extends Component {
 {/* progress bars below */}
             <div className="relative pt-1 ml-72 flex justify-evenly">
               <button className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Choose</button>
-              <button className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Synopsis</button>
+              <button className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.synopsisToggle()}>Synopsis</button>
             </div>
             {/* <div className="relative pt-1 ml-72">
               <div>
@@ -81,7 +90,24 @@ class AnimeCard extends Component {
             </div> */}
 {/* progress bars above */}
           </div>
-        {/* </div> */}
+
+
+          <div className="max-w-xl py-3">
+            <div 
+              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
+            >
+              <span className="font-bold">Synopsis</span>
+              <span className="text-gray-400">{this.props.synopsis}</span>
+            </div>
+          </div>
+
+
+
+
+
+
+
+        </div>
       </>
     )
   }

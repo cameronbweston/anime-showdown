@@ -112,7 +112,7 @@ class GamePage extends Component {
         </div>
       </div>
 
-      <div className="w-screen flex justify-evenly">
+      {/* <div className="w-screen flex justify-evenly"> */}
           <AnimeCard 
             title={showsForGame[show1Idx].title}
             image={showsForGame[show1Idx].image_url}
@@ -121,22 +121,15 @@ class GamePage extends Component {
             rated={showsForGame[show1Idx].rated}
             episodes={showsForGame[show1Idx].episodes}
           />
-          <div className="max-w-xl py-3">
-            <div 
-              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
-            >
-              <span className="font-bold">Synopsis</span>
-              <span className="text-gray-400">{showsForGame[show1Idx].synopsis}</span>
-            </div>
-          </div>
-      </div>
+          
+      {/* </div> */}
           {/* PASS in the show index to delete*/}
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
           Choose Show 1
         </button>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
+        {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
           Synopsis
-        </button>
+        </button> */}
         <p className="text-5xl">VS.</p>
         <AnimeCard 
            title={showsForGame[show2Idx].title}
