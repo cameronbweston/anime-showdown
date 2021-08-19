@@ -100,16 +100,19 @@ class App extends Component {
 					user ? <Users /> : <Redirect to='/login'/>
 			}/>
 			<Route exact path='/GamePage'>
-				<GamePage history={this.props.history} 
+				<GamePage 
+					history={this.props.history} 
 					handleAddToUserCollection={this.handleAddToUserCollection}
+					userProfile={userProfile}
 				/>
 			</Route>
 			<Route
 				exact path='/animes/:id'
-				render={({ match })=>
+				render={({ match, history })=>
 					authService.getUser() ?
 					<AnimeDetails
 						match={match}
+						history={history}
 						userProfile={userProfile}
 					/> : <Redirect to='/login'/>
 				}

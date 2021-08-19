@@ -84,9 +84,6 @@ const NavBar = ({ user, handleLogout }) => {
 									)}
 								</Menu.Item>
 								<Menu.Item>
-
-								</Menu.Item>
-								<Menu.Item>
 									{({ active }) => (
 										<Link
 											to="" onClick={handleLogout}

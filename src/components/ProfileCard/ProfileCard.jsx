@@ -16,10 +16,10 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
         </div>
     </Link>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleAddFriend(profile._id)}>Add Friend</button> 
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleAddFriend(profile._id)}>Add Friend</button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button onClick={() => handleRemoveFriend(profile._id)}>Remove Friend</button> 
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleRemoveFriend(profile._id)}>Remove Friend</button> 
       }   
     </>
   );

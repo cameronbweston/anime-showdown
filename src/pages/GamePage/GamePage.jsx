@@ -66,7 +66,11 @@ class GamePage extends Component {
             rated={showsForGame[0].rated}
             episodes={showsForGame[0].episodes}
             />
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.props.handleAddToUserCollection(showsForGame[0])}>Add to Collection</button>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
+                  onClick={() => 
+                  {this.props.handleAddToUserCollection(showsForGame[0])
+                    this.props.history.push(`/profile/${this.props.userProfile._id}`)
+                  }}>Add to Collection</button>
         </>
       )
     }
