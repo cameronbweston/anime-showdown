@@ -33,6 +33,7 @@ function searchAnime(req, res) {
 }
 
 function getRandomShowsForGameStart(req, res) {
+  console.log(req.body)
   let limit = 10
   //const genre1 = req.body.genre1
   //const genre2 = req.body.genre2

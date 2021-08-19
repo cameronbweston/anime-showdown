@@ -8,7 +8,7 @@ import { router as usersRouter } from './routes/users.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as animeRouter } from './routes/anime.js'
 import { router as profilesRouter } from './routes/profiles.js'
-import { router as reivewRouter} from './routes/review.js'
+import { router as reviewRouter} from './routes/review.js'
 import('./config/database.js')
 
 const app = express()
