@@ -50,7 +50,7 @@ class GameForm extends Component {
       {/* WELCOME BUBBLE */}
       <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
         <div className="text-3xl font-semibold">
-          Welcome, { this.props.user.name }!
+          Welcome, { this.props.userProfile?.name }!
         </div>
       </div>
 

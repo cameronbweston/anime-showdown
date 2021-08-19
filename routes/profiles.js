@@ -13,9 +13,9 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/edit', checkAuth, profilesCtrl.edit)
 router.get('/userProfile', checkAuth, profilesCtrl.userProfile)
 router.get('/:id', checkAuth, profilesCtrl.getProfileDetails)
 router.get('/', checkAuth, profilesCtrl.index)
-router.patch('/edit', checkAuth, profilesCtrl.edit)
 router.patch('/friend/:id', checkAuth, profilesCtrl.friend)
 router.patch('/unfriend/:id', checkAuth, profilesCtrl.unfriend)
