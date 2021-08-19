@@ -65,7 +65,11 @@ class App extends Component {
 		<>
 			<NavBar user={user} userProfile={userProfile} handleLogout={this.handleLogout} history={this.props.history} />
 			<Route exact path='/'>
-				<Landing user={user} history={this.props.history}/>
+				<Landing 
+					user={user} 
+					history={this.props.history}
+					getRandomShowsForGameStart={"animeAPI.getRandomShowsForGameStart"}
+				/>
 			</Route>
 			<Route exact path='/signup'>
 				<Signup history={this.props.history} handleSignupOrLogin={this.handleSignupOrLogin}/>

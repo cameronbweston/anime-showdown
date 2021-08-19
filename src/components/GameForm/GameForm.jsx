@@ -1,4 +1,4 @@
-import React, { Component } from 'react'  
+import React, { Component } from 'react' 
 
 class GameForm extends Component {
   state = {
@@ -35,6 +35,7 @@ class GameForm extends Component {
   handleSubmit = async e => {   
     const { history } = this.props
     e.preventDefault() 
+    // this.props.getRandomShowsForGameStart(this.state.formData)
     try {
       history.push("/gamepage")
     } catch (err) {
