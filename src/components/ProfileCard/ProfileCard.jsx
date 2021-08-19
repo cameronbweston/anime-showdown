@@ -1,27 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend}) => {
-  console.log(`profile: ${profile}`)
-  console.log(`profile: ${userProfile}`)
+const ProfileCard = (props) => {
+  const [userProfile, setUserProfile] = useState(props.userProfile)
+
+  useEffect(() => {
+    setUserProfile(props.userProfile)
+  }, [props.userProfile])
+
   return (
     <>
     <Link
         to={{
-          pathname: `/profile/${profile._id}`,
-          state: {profile}
+          pathname: `/profile/${props.profile._id}`,
+          state: props.profile
         }}
         >
         <div>
-          <h4>{profile.name}</h4>  
+          <h4>{props.profile.name}</h4>  
           <img src='/defaultProfileImg.png' alt='avatar' />
         </div>
     </Link>
-      { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleAddFriend(profile._id)}>Add Friend</button> 
+      { !(userProfile?._id === props.profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleAddFriend(props.profile._id)}>Add Friend</button> 
       }
-      { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === profile._id)) &&
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleRemoveFriend(profile._id)}>Remove Friend</button> 
+      { !(userProfile?._id === props.profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleRemoveFriend(props.profile._id)}>Remove Friend</button> 
       }   
     </>
   );
