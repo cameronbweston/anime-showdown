@@ -1,5 +1,6 @@
 import {Review} from '../models/review.js'
 import {Anime } from '../models/anime.js'
+import {Profile} from '../models/profile.js'
 
 export {
     create,
@@ -10,9 +11,14 @@ export {
 }
 
 function deleteReview(req, res) {
-    Anime.findByIdAndDelete(req.body)
-    .then((review)=>{
-        res.json(review)
+    Profile.findById(req.user.profile)
+        .then((profile)=>{
+            profile.reviews.remove(req.params.id)
+            profile.save()
+            Anime.findByIdAndDelete(req.params.id)
+                .then((review)=>{
+                res.json(review)
+        })
     })
 }
 
@@ -40,6 +46,7 @@ function update(req, res) {
 }
 
 function index(req, res) {
+
     Review.findById(req.params.id)
     .populate('reviews')
     .then(review=>{

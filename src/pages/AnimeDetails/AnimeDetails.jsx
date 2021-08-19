@@ -43,8 +43,17 @@ class AnimeDetails extends Component {
                 {/* 
                     TODO: Add User Review Section
                 */}
-                <h2>Reviews</h2>
-                <form action="/anime" method="POST"></form>
+                <h1> Write A Review</h1>
+                <form action="/anime/:id" method="POST">
+                <input 
+                    type="text" 
+                    name="comment"
+                    
+                    />
+                <button type='submit' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                    Submit
+                </button>
+                </form>
                  {review.map(review =>
                     <p>{review.comment}</p>
                     
