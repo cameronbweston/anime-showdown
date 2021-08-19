@@ -22,7 +22,7 @@ class AnimeSearch extends Component {
     render() { 
         return ( <> 
             <h1>Anime Results</h1>
-
+              
         </>);
     }
 }

@@ -7,7 +7,7 @@ class AnimeCard extends Component {
   }
 
   render() {
-    const { title, image, synopsis, score, rated, episodes } = this.props
+    const { title, image, synopsis, score, rated, episodes} = this.props
     return (
       <>
         {/* <div className="min-h-full py-6 flex flex-col justify-center sm:py-12"> */}

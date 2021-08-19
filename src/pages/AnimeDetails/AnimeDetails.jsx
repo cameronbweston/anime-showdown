@@ -5,7 +5,8 @@ import * as animeAPI from '../../services/animeService'
 
 class AnimeDetails extends Component {
     state = { 
-        anime: null
+        anime: null,
+        review:[]
     }
 
     async componentDidMount() {
@@ -19,7 +20,7 @@ class AnimeDetails extends Component {
     }
 
     render() { 
-        const {anime} = this.state
+        const {anime, review} = this.state
         console.log()
 
         if (anime === null) {
@@ -42,6 +43,16 @@ class AnimeDetails extends Component {
                 {/* 
                     TODO: Add User Review Section
                 */}
+                <h2>Reviews</h2>
+                <form action="/anime" method="POST"></form>
+                 {review.map(review =>
+                    <p>{review.comment}</p>
+                    
+                    )}
+                        
+                
+                
+        
                 </>
              );
         }
