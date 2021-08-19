@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
 import './GamePage.css'
@@ -9,7 +8,8 @@ class GamePage extends Component {
     showsForGame: [],
     show1Idx: null,
     show2Idx: null,
-    gameOver: false
+    gameOver: false,
+    synopsisActive: false
    }
 
    async componentDidMount() {
@@ -24,7 +24,7 @@ class GamePage extends Component {
     })
    }
 
-   handleChoose = (idx) => {
+  handleChoose = (idx) => {
     //Splice selected show idx from array and remove it
     const showsForGame = this.state.showsForGame
     showsForGame.splice(idx, 1)
@@ -46,7 +46,13 @@ class GamePage extends Component {
       show1Idx,
       show2Idx
    })
-}
+  }
+
+  synopsisToggle() {
+    // if (synopsisActive = true) {
+    //   this.setState({ synopsisActive: false })
+    // }
+  }
 
   render() { 
     const { showsForGame } = this.state
@@ -84,11 +90,11 @@ class GamePage extends Component {
       <>
       {isLoading ? 
         <>
-          <div class="flex flex-col justify-center items-center h-screen">
+          <div className="flex flex-col justify-center items-center h-screen">
             <div className="flex justify-center">
               <div className="text-5xl mb-8">LOADING</div>  
             </div>
-            <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
+            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
           </div>
         </>
 
@@ -103,7 +109,7 @@ class GamePage extends Component {
         </div>
       </div>
 
-      <div className="w-screen border flex">
+      <div className="w-screen flex justify-evenly">
           <AnimeCard 
             title={showsForGame[show1Idx].title}
             image={showsForGame[show1Idx].image_url}
@@ -112,11 +118,23 @@ class GamePage extends Component {
             rated={showsForGame[show1Idx].rated}
             episodes={showsForGame[show1Idx].episodes}
           />
-          <div className="border h-full"></div>
+          <div className="max-w-xl py-3">
+            <div 
+              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
+              // className={this.state.synopsisActive ? 'hidden' : ''}
+              // className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"
+            >
+              <span className="font-bold">Synopsis</span>
+              <span className="text-gray-400">{showsForGame[show1Idx].synopsis}</span>
+            </div>
+          </div>
       </div>
           {/* PASS in the show index to delete*/}
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
           Choose Show 1
+        </button>
+        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
+          Synopsis
         </button>
         <p className="text-5xl">VS.</p>
         <AnimeCard 
