@@ -11,7 +11,6 @@ class SignupForm extends Component {
   }
 
   handleChange = e => {
-    console.log(e)
     // this.props.updateMessage('')
     this.setState({
       [e.target.name]: e.target.value,

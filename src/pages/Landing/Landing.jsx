@@ -12,7 +12,7 @@ const Landing = (props) => {
         getRandomShowsForGameStart={props.getRandomShowsForGameStart}
         />
       ) : (
-        <SignupForm />
+        <SignupForm handleSignupOrLogin={props.handleSignupOrLogin} history={props.history}/>
       )}
     </main>
   )

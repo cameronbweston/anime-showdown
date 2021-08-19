@@ -71,6 +71,7 @@ class App extends Component {
 					user={user} 
 					userProfile={userProfile}
 					history={this.props.history}
+					handleSignupOrLogin={this.handleSignupOrLogin}
 					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
 				/>
 			</Route>
