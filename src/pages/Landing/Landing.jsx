@@ -2,7 +2,6 @@ import SignupForm from '../../components/SignupForm/SignupForm'
 import GameForm from '../../components/GameForm/GameForm'
 
 const Landing = (props) => {
-  console.log(props)
   return (
     <main className="">
       {props.user ? (

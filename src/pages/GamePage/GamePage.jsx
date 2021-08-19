@@ -52,7 +52,9 @@ class GamePage extends Component {
     if (this.state.synopsisActive) {
       this.setState({ synopsisActive: false })
     }
-    this.state.synopsisActive ? this.setState({ synopsisActive: false }) : this.setState({ synopsisActive: false })
+    if (!this.state.synopsisActive) {
+      this.setState({ synopsisActive: true })
+    }
   }
 
   render() { 
@@ -121,9 +123,7 @@ class GamePage extends Component {
           />
           <div className="max-w-xl py-3">
             <div 
-              // className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
-              className={this.state.synopsisActive ? 'hidden' : ''}
-              // className="bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"
+              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
             >
               <span className="font-bold">Synopsis</span>
               <span className="text-gray-400">{showsForGame[show1Idx].synopsis}</span>
