@@ -45,9 +45,12 @@ class AnimeDetails extends Component {
                 */}
                 <h2>Reviews</h2>
                 <form action="/anime" method="POST"></form>
-                 {review.map(review=>
+                 {review.map(review =>
                     <p>{review.comment}</p>
-                 )}
+                    
+                    )}
+                        
+                
                 
         
                 </>
