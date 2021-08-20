@@ -29,7 +29,7 @@ class ProfileDetails extends Component {
             return (
                 <div className="">
                   <div className="flex flex-col items-center">
-                      <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
+                      <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight shadow-inner">
                         <div className="text-3xl font-semibold">
                           {profile?.name}'s Profile
                         </div>
@@ -66,15 +66,17 @@ class ProfileDetails extends Component {
                     <div className="text-xl font-semibold text-center mt-10 mb-2 bg-blue-300 text-white w-96 rounded-lg shadow-2xl">
                       Friends
                     </div>
-                    <div className="">
-                      {/* <h2>Friends</h2>
+                    <div className="flex flex-row justify-evenly">
                         {profile.friends.map(profile => 
-                          <>
-                            <h3 key={profile._id}>
-                              {profile.name}
-                            </h3>
-                          </>
-                        )} */}
+                            <div 
+                              className="mx-10"
+                              key={profile._id}>
+                                <div className="flex flex-col justify-center items-center">
+                                  <div className="bg-white font-bold px-4 py-1 mb-1 rounded-lg shadow-inner">{profile.name}</div>
+                                  <img src="/defaultProfileImg.png" alt="Avatar" className="rounded-2xl shadow-2xl animate__animated animate__flipInY mb-10"/>
+                                </div>
+                            </div>
+                        )}
                     </div>
                   </div>
                 </div>
