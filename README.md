@@ -46,10 +46,13 @@ Trello Board:
 - Player profile customization will be fully actualized, with the ability to edit a short biography, avatar, and location.
 - A messaging system will be implemented to allow users to connect and hold conversations with each other.
 - The "winner" view will be expanded to hold more information about the victorious anime, including possible sources to stream or read the media.
+- The home page will be adjusted to immediately present the player with either a registration page or a login page, then onto the game.  If the player has previously been logged in, they will be redirected straight to the game.
 
 ## Bugs To Be Addressed:
 - The "Add Friend" button for each profile on the "Users" view crashed the backend server.
-- 
+- The registration form occasionally alerts with "error" despite the user being successfully logged in.
+- Gameplay currently only returns from our sample data, not from the API with the player's recommendation preferences.
+- The "Add to Collection", "More Details", and "View on MyAnimeList" buttons on the winning view page not currently operational.
 
 ## Lessons Learned:
 This project was a major lesson in planning, time management, communication, and teamwork.  There should have been more detail in the planning and to the division of responsibilities.  
