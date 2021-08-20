@@ -15,12 +15,11 @@ class GamePage extends Component {
 
    async componentDidMount() {
      const showsForGame = await animeAPI.getRandomShowsForGameStart()
-     const show1Idx = 0
-     const show2Idx = 1
+
      this.setState({
        showsForGame,
-       show1Idx,
-       show2Idx
+       show1Idx: 0,
+       show2Idx: 1
        //Add counter for times each show was clicked
     })
    }
@@ -39,14 +38,12 @@ class GamePage extends Component {
     } 
     //Select 2 more shows (random or not) 
     //May need to make sure these random ints are never the same --->
-    const show1Idx = Math.floor(Math.random() * showsForGame.length)
-    const show2Idx = Math.floor(Math.random() * showsForGame.length)
+    //const show1Idx = Math.floor(Math.random() * showsForGame.length)
+    //const show2Idx = Math.floor(Math.random() * showsForGame.length)
 
     // Update the state
     this.setState({ 
       showsForGame,
-      show1Idx,
-      show2Idx
    })
   }
 
@@ -55,7 +52,10 @@ class GamePage extends Component {
     const { show1Idx } = this.state
     const { show2Idx } = this.state
 
-    console.log(showsForGame[0])
+    console.log(showsForGame)
+    console.log(show1Idx)
+    console.log(show2Idx)
+
     if (this.state.gameOver) {
       return (
         <>
@@ -136,7 +136,7 @@ class GamePage extends Component {
             episodes={showsForGame[show1Idx].episodes}
             showIdx={this.state.show1Idx}
             show1={this.state.show1Idx}
-            handleChoose={this.handleChoose}
+            handleChoose={() => this.handleChoose(1)}
           />
         </div>
           
@@ -154,7 +154,7 @@ class GamePage extends Component {
            episodes={showsForGame[show2Idx].episodes}
            showIdx={this.state.show2Idx}
            show2={this.state.show2Idx}
-           handleChoose={this.handleChoose}
+           handleChoose={() => this.handleChoose(0)}
           />
         </div>
       </> 
