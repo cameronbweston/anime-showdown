@@ -18,7 +18,8 @@ import Friends from '../Friends/Friends'
 class App extends Component {
 	state = {
 		user: authService.getUser(),
-		userProfile: null
+		userProfile: null,
+		shows: null
 	}
 
 	handleLogout = () => {
@@ -62,6 +63,11 @@ class App extends Component {
 		
 	}
 
+	handleGetShows = async formData => {
+		const shows = await animeAPI.getRandomShowsForGameStart(formData)
+		console.log(`handleGetShows: ${shows}`)
+		this.setState({shows})
+	}
 	  
 	render() {
 		const { user, userProfile } = this.state
@@ -76,7 +82,7 @@ class App extends Component {
 					userProfile={userProfile}
 					history={this.props.history}
 					handleSignupOrLogin={this.handleSignupOrLogin}
-					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
+					handleGetShows={this.handleGetShows}
 				/>
 			</Route>
 			<Route exact path='/signup'>
@@ -138,6 +144,7 @@ class App extends Component {
 					history={this.props.history} 
 					handleAddToUserCollection={this.handleAddToUserCollection}
 					userProfile={userProfile}
+					shows={this.state.shows}
 				/>
 			</Route>
 			<Route
