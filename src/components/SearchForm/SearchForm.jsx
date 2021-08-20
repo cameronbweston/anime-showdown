@@ -27,6 +27,8 @@ class Search extends Component {
                 <form ref={this.formRef} onSubmit={this.handleSubmit}>
 
                     <input  
+                    name='query'
+                    value={this.state.formData.query}
                     onChange={this.handleChange}
                     className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none" 
                     id="search" 

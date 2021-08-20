@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as animeAPI from '../../services/animeService'
+import AnimeCard from '../../components/AnimeCard/AnimeCard';
 
 class AnimeSearch extends Component {
     state = { 
@@ -7,7 +8,7 @@ class AnimeSearch extends Component {
     }
     async componentDidMount() {
         const { params } = this.props.match
-        if (params.searchType === 'byName') {
+        {
           const searchResults = await animeAPI.searchAnime( this.props.match.query)
           this.setState({ searchResults: searchResults.results })
         } 
@@ -22,7 +23,12 @@ class AnimeSearch extends Component {
     render() { 
         return ( <> 
             <h1>Anime Results</h1>
-              
+              {this.state.searchResults?.map((anime)=>
+                <AnimeCard 
+                  userProfile={this.props.userProfile}
+                  key={anime.id}
+                />
+              )}
         </>);
     }
 }
