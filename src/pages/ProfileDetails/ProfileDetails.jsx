@@ -29,7 +29,7 @@ class ProfileDetails extends Component {
             return (
                 <div className="">
                   <div className="flex flex-col items-center">
-                      <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight shadow-inner">
+                      <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
                         <div className="text-3xl font-semibold">
                           {profile?.name}'s Profile
                         </div>
