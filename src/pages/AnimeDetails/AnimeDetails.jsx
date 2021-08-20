@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
+import * as reviewAPI from '../../services/reviewService'
 
 class AnimeDetails extends Component {
     state = { 
@@ -19,10 +20,15 @@ class AnimeDetails extends Component {
         this.props.history.push(`/profile/${this.props.userProfile._id}`)
     }
 
-   handleSubmit = async e =>{
-       e.preventDefault()
+   handleAddReview = async e =>{
+        // e.preventDefault()
+        console.log(e)
+        const review = await reviewAPI.addReview(review)
+
        
    }
+
+  
     
 
     render() { 
@@ -50,7 +56,7 @@ class AnimeDetails extends Component {
                     TODO: Add User Review Section
                 */}
                 <h1> Write A Review</h1>
-                <form action="/anime/:id" method="POST">
+                <form onClick={()=>this.handleAddReview(this.state.animeId)} >
                 <input 
                     type="text" 
                     name="comment"
@@ -60,10 +66,7 @@ class AnimeDetails extends Component {
                     Submit
                 </button>
                 </form>
-                 {review.map(review =>
-                    <p>{review.comment}</p>
-                    
-                    )}
+                 
                         
                 
                 

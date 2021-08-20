@@ -30,7 +30,7 @@ export function addReview(review){
       {
         method: 'DELETE',
         headers: {'content-type':'application/json', Authorization: "Bearer " + tokenService.getToken() },
-        /* body:JSON.stringify(review) */
+        
       },
       { mode: "cors" }
       ).then((res) => res.json())
