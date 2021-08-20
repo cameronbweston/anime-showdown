@@ -71,7 +71,7 @@ class AnimeDetails extends Component {
                 				{anime.synopsis}
                 			</div>
                 		</div>
-										<div className="w-2/5">
+										<div className="w-2/5 mt-5">
 										<div className="border max-w-4xl p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
                 			<div className="text-xl font-semibold text-center">
                 				Leave A Review
