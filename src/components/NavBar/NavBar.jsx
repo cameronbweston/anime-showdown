@@ -17,9 +17,9 @@ const NavBar = ({ user, handleLogout }) => {
 <Disclosure as="nav" className="h-20 bg-white shadow-2xl flex items-center">
 {({ open }) => (
 	<>
-		<div className="max-w-7xl w-full px-2 sm:px-6 lg:px-8">
-			<div className=" flex h-16">
-				<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+		<div className="w-full px-2 sm:px-6 lg:px-8">
+			<div className="flex h-16">
+				<div className="flex items-center sm:hidden">
 				</div>
 				<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 					<div className="flex-shrink-0 flex items-center">
@@ -56,7 +56,7 @@ const NavBar = ({ user, handleLogout }) => {
 
 					{/* Profile dropdown */}
 					<Menu as="div" className="ml-3 relative">
-						<div className="ml-20 -mr-12">
+						<div className="ml-20">
 							<Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 								<span className="sr-only">User Menu</span>
 								<div className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 flex items-center justify-center">
