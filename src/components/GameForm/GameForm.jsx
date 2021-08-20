@@ -35,7 +35,7 @@ class GameForm extends Component {
   handleSubmit = async e => {   
     const { history } = this.props
     e.preventDefault() 
-    this.props.getRandomShowsForGameStart(this.state.formData)
+    this.props.handleGetShows(this.state.formData)
     try {
       history.push("/gamepage")
     } catch (err) {

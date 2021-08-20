@@ -14,14 +14,22 @@ class GamePage extends Component {
    }
 
    async componentDidMount() {
-     const showsForGame = await animeAPI.getRandomShowsForGameStart()
+     //const showsForGame = await this.props.shows
+         this.setState({
+        show1Idx: 0,
+        show2Idx: 1
+      })
+   }
 
-     this.setState({
-       showsForGame,
-       show1Idx: 0,
-       show2Idx: 1
-       //Add counter for times each show was clicked
-    })
+   async componentWillReceiveProps() {
+     this.setState({showsForGame: this.props.shows})
+   }
+
+   async componentDidUpdate(prevProps) {
+    //console.log(`state shows: ${props.shows}`)
+    if (prevProps.shows !== this.props.shows) {
+      this.setState({showsForGame: this.props.shows})
+    }
    }
 
   handleChoose = (idx) => {
@@ -107,7 +115,7 @@ class GamePage extends Component {
     }
 
     let isLoading = true
-    if(this.state.showsForGame.length > 0) {
+    if(this.state.showsForGame?.length > 0) {
       isLoading = false
     }
     

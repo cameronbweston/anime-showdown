@@ -43,7 +43,7 @@ function getRandomShowsForGameStart(req, res) {
   if (req.body.isTv) { formatString += '&type=tv'}
   if (req.body.isMovie) { formatString += '&type=movie'}
   if (req.body.isSciFi) { genreString += '&genre=18,24,29'}
-  if (req.body.isFantasy) { genreString += '&genre=10,16'}
+  if (req.body.isFantasy) { genreString += '&genre=10'}
   if (req.body.isComedy) { genreString += '&genre=4,20'}
   if (req.body.isDrama) { genreString += '&genre=8,41'}
   if (req.body.isActionAdventure) { genreString += '&genre=1,2'}
@@ -57,10 +57,12 @@ function getRandomShowsForGameStart(req, res) {
 
   console.log(req.body)
   console.log(`genreString: ${genreString}`)
+  console.log(`ratingString: ${ratingString}`)
+  console.log(`${BASE_URL}search/anime?q=&page=1${genreString}${ratingString}&order_by=members&sort=desc&limit=${limit}`)
   //example call: https://api.jikan.moe/v3/search/anime?q=attack on titan
-    axios.get(`${BASE_URL}search/anime?q=&page=1${genreString}&order_by=members&sort=desc&limit=${limit}`)
+    axios.get(`${BASE_URL}search/anime?q=&page=1${genreString}${ratingString}&order_by=members&sort=desc&limit=${limit}`)
     .then(result => {
-      console.log(result.data.results)
+      //console.log(result.data.results)
       res.json(result.data.results)
   })
   .catch((err) => console.log(err.message));
