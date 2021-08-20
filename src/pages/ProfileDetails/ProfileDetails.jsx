@@ -32,8 +32,8 @@ class ProfileDetails extends Component {
                     <div className="text-5xl font-semibold text-center mt-10">
                       {profile?.name}'s Profile
                     </div>
-                    <div className="flex justify-center w-96 h-96 border mt-10 rounded-xl">
-                      <img src={profile?.avatar} alt="Avatar" className="mt-10"/>
+                    <div className="flex justify-center mt-10 rounded-xl">
+                      <img src="/defaultProfileImg.png" alt="Avatar" className=" rounded-2xl"/>
                     </div>
                     <div className="text-xl font-semibold text-center mt-10 mb-2 bg-blue-300 text-white w-96 rounded-lg">
                       Anime Collection
@@ -42,7 +42,7 @@ class ProfileDetails extends Component {
 
                     {animes.map(show =>
                     <div className="flex flex-col w-72 items-center">
-                      <img src={show.image_url} alt="poster" className="w-4/5" />
+                      <img src={show.image_url} alt="poster" className="w-4/5 rounded-lg" />
                       <div className="font-semibold bg-grey text-center rounded-md mt-2">
                         {show.title}
                       </div>
