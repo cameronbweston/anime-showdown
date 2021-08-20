@@ -5,7 +5,7 @@ class Search extends Component {
         invalidForm: true,
 		formData: {
 			query: '',
-			type: ''
+			type: 'anime'
 		},
      }
      formRef = React.createRef();
@@ -19,7 +19,7 @@ class Search extends Component {
 	};
     handleSubmit = e => {
 		e.preventDefault();
-    this.props.history.push(`/search/${this.state.formData.type}s/byName/${this.state.formData.query}`)
+    this.props.history.push(`/search/${this.state.formData.query}`)
   };
     render() { 
         return ( 
