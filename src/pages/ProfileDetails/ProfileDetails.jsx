@@ -33,7 +33,7 @@ class ProfileDetails extends Component {
                       {profile?.name}'s Profile
                     </div>
                     <div className="flex justify-center w-96 h-96 border mt-10 rounded-xl">
-                      <img src={profile?.avatar} alt="Avatar" className="mt-10"/>
+                      <img src={'/defaultProfileImg.png'} alt="Avatar" className="mt-10"/>
                     </div>
                     <div className="text-xl font-semibold text-center mt-10 mb-2 bg-blue-300 text-white w-96 rounded-lg">
                       Anime Collection
