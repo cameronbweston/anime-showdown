@@ -11,6 +11,7 @@ class GamePage extends Component {
     show1Idx: null,
     show2Idx: null,
     gameOver: false,
+    synopsisActive: false,
    }
 
    async componentDidMount() {
@@ -24,8 +25,19 @@ class GamePage extends Component {
     })
    }
 
+   synopsisToggle() {
+    if (this.state.synopsisActive) {
+      this.setState({ synopsisActive: false })
+    }
+    if (!this.state.synopsisActive) {
+      this.setState({ synopsisActive: true })
+    }
+  }
+
   handleChoose = (idx) => {
-    //Splice selected show idx from array and remove it
+    if (this.state.synopsisActive) {
+      this.setState({ synopsisActive: false })
+    }
     new Audio(swordstrike).play()
     const showsForGame = this.state.showsForGame
     showsForGame.splice(idx, 1)
@@ -137,6 +149,7 @@ class GamePage extends Component {
             showIdx={this.state.show1Idx}
             show1={this.state.show1Idx}
             handleChoose={() => this.handleChoose(1)}
+            synopsisToggle={this.synopsisToggle}
           />
         </div>
           
@@ -155,6 +168,7 @@ class GamePage extends Component {
            showIdx={this.state.show2Idx}
            show2={this.state.show2Idx}
            handleChoose={() => this.handleChoose(0)}
+           synopsisToggle={this.synopsisToggle}
           />
         </div>
       </> 

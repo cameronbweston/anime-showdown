@@ -68,7 +68,11 @@ class AnimeCard extends Component {
             </div>
 {/* progress bars below */}
             <div className="relative pt-5 ml-72 flex justify-evenly">
-              <button className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.props.handleChoose(this.props.showIdx)}>Choose</button>
+              <button 
+                className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+                onClick={() => {
+                this.synopsisActive = false
+                this.props.handleChoose(this.props.showIdx)}}>Choose</button>
               <button className="w-2/5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.synopsisToggle()}>Synopsis</button>
             </div>
           </div>
