@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
 import './GamePage.css'
+import vsimg from './versus.png'
+import swordstrike from './swordstrike.wav'
 
 class GamePage extends Component {
   state = { 
@@ -25,6 +27,7 @@ class GamePage extends Component {
 
   handleChoose = (idx) => {
     //Splice selected show idx from array and remove it
+    new Audio(swordstrike).play()
     const showsForGame = this.state.showsForGame
     showsForGame.splice(idx, 1)
 
@@ -56,7 +59,15 @@ class GamePage extends Component {
     if (this.state.gameOver) {
       return (
         <>
-          <h1>You Should Watch:</h1>
+          <div className="flex flex-col justify-center items-center">
+            <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
+              <div className="text-3xl font-semibold">
+                You should watch...
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-evenly min-h-full sm:pt-12 animate__animated animate__fadeInLeft">
+          
           <AnimeCard 
             title={showsForGame[0].title}
             image={showsForGame[0].image_url}
@@ -65,11 +76,13 @@ class GamePage extends Component {
             rated={showsForGame[0].rated}
             episodes={showsForGame[0].episodes}
             />
+          </div> 
           <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
                   onClick={() => 
                   {this.props.handleAddToUserCollection(showsForGame[0])
                     this.props.history.push(`/profile/${this.props.userProfile._id}`)
                   }}>Add to Collection</button>
+                
         </>
       )
     }
@@ -95,13 +108,13 @@ class GamePage extends Component {
 
       <>
       <div className="flex flex-col justify-center items-center">
-        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
           <div className="text-3xl font-semibold">
             Choose which anime moves on to the next round!
           </div>
         </div>
       </div>
-
+      <div className="flex flex-row justify-evenly min-h-full sm:pt-12 animate__animated animate__fadeInRight animate__delay-1s">
           <AnimeCard 
             title={showsForGame[show1Idx].title}
             image={showsForGame[show1Idx].image_url}
@@ -110,20 +123,16 @@ class GamePage extends Component {
             rated={showsForGame[show1Idx].rated}
             episodes={showsForGame[show1Idx].episodes}
             showIdx={this.state.show1Idx}
-            showsForGame={this.state.showsForGame}
+            show1={this.state.show1Idx}
             handleChoose={this.handleChoose}
           />
+        </div>
           
         <div className="flex flex-col justify-center items-center">
-          <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
-            <div className="text-6xl font-semibold">
-              VS.
-            </div>
-          </div>
+               <img className="object-contain w-60 animate__animated animate__rotateIn" src={vsimg} alt="VS" />
         </div>
 
-
-
+      <div className="flex flex-row-reverse justify-evenly min-h-full animate__animated animate__fadeInLeft animate__delay-1s">
         <AnimeCard 
            title={showsForGame[show2Idx].title}
            image={showsForGame[show2Idx].image_url}
@@ -132,8 +141,10 @@ class GamePage extends Component {
            rated={showsForGame[show2Idx].rated}
            episodes={showsForGame[show2Idx].episodes}
            showIdx={this.state.show2Idx}
+           show2={this.state.show2Idx}
            handleChoose={this.handleChoose}
           />
+        </div>
       </> 
       }
       </>
