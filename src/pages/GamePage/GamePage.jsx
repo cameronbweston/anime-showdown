@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
-import './GamePage.css'
+import vsimg from './versus.png'
+import swordstrike from './swordstrike.wav'
+import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
 class GamePage extends Component {
   state = { 
@@ -9,7 +11,6 @@ class GamePage extends Component {
     show1Idx: null,
     show2Idx: null,
     gameOver: false,
-    synopsisActive: false
    }
 
    async componentDidMount() {
@@ -26,6 +27,7 @@ class GamePage extends Component {
 
   handleChoose = (idx) => {
     //Splice selected show idx from array and remove it
+    new Audio(swordstrike).play()
     const showsForGame = this.state.showsForGame
     showsForGame.splice(idx, 1)
 
@@ -48,15 +50,6 @@ class GamePage extends Component {
    })
   }
 
-  synopsisToggle() {
-    if (this.state.synopsisActive) {
-      this.setState({ synopsisActive: false })
-    }
-    if (!this.state.synopsisActive) {
-      this.setState({ synopsisActive: true })
-    }
-  }
-
   render() { 
     const { showsForGame } = this.state
     const { show1Idx } = this.state
@@ -66,7 +59,15 @@ class GamePage extends Component {
     if (this.state.gameOver) {
       return (
         <>
-          <h1>You Should Watch:</h1>
+          <div className="flex flex-col justify-center items-center">
+            <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight">
+              <div className="text-3xl font-semibold">
+                You should watch...
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-evenly min-h-full sm:pt-12 animate__animated animate__fadeInLeft">
+          
           <AnimeCard 
             title={showsForGame[0].title}
             image={showsForGame[0].image_url}
@@ -75,11 +76,32 @@ class GamePage extends Component {
             rated={showsForGame[0].rated}
             episodes={showsForGame[0].episodes}
             />
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
-                  onClick={() => 
-                  {this.props.handleAddToUserCollection(showsForGame[0])
-                    this.props.history.push(`/profile/${this.props.userProfile._id}`)
-                  }}>Add to Collection</button>
+          </div> 
+          <div className="flex justify-evenly mt-20">
+            <button 
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse' 
+              onClick={() => {
+                this.props.handleAddToUserCollection(showsForGame[0])
+                this.props.history.push(`/profile/${this.props.userProfile._id}`)
+              }}
+            >
+              Add to Collection
+            </button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse'>
+              <a href={`/*this.state.show.url*/`}> More Details</a>
+            </button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse'>
+              <a href='/*this.state.show.url*/'>View on MyAnimeList</a>
+            </button>
+            
+          </div>   
+          <div className="flex flex-col justify-center items-center">
+            <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-20 animate__animated animate__backInRight">
+              <div className="text-3xl font-semibold">
+                Come back and let us know what you think!
+              </div>
+            </div>
+          </div>   
         </>
       )
     }
@@ -93,26 +115,18 @@ class GamePage extends Component {
       <>
       {isLoading ? 
         <>
-          <div className="flex flex-col justify-center items-center h-screen">
-            <div className="flex justify-center">
-              <div className="text-5xl mb-8">LOADING</div>  
-            </div>
-            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
-          </div>
+          <LoadingPage/>
         </>
-
         :
-
       <>
       <div className="flex flex-col justify-center items-center">
-        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInRight my-10">
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
           <div className="text-3xl font-semibold">
             Choose which anime moves on to the next round!
           </div>
         </div>
       </div>
-
-      <div className="w-screen flex justify-evenly">
+      <div className="flex flex-row justify-evenly min-h-full sm:pt-12 animate__animated animate__fadeInRight animate__delay-1s">
           <AnimeCard 
             title={showsForGame[show1Idx].title}
             image={showsForGame[show1Idx].image_url}
@@ -120,24 +134,17 @@ class GamePage extends Component {
             score={showsForGame[show1Idx].score}
             rated={showsForGame[show1Idx].rated}
             episodes={showsForGame[show1Idx].episodes}
+            showIdx={this.state.show1Idx}
+            show1={this.state.show1Idx}
+            handleChoose={this.handleChoose}
           />
-          <div className="max-w-xl py-3">
-            <div 
-              className={this.state.synopsisActive ? 'hidden' : '' + "bg-white shadow-2xl border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8  h-full"}
-            >
-              <span className="font-bold">Synopsis</span>
-              <span className="text-gray-400">{showsForGame[show1Idx].synopsis}</span>
-            </div>
-          </div>
-      </div>
-          {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show2Idx)}>
-          Choose Show 1
-        </button>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' id="synopsis" onClick={() => this.synopsisToggle()}>
-          Synopsis
-        </button>
-        <p className="text-5xl">VS.</p>
+        </div>
+          
+        <div className="flex flex-col justify-center items-center">
+               <img className="object-contain w-60 animate__animated animate__rotateIn" src={vsimg} alt="VS" />
+        </div>
+
+      <div className="flex flex-row-reverse justify-evenly min-h-full animate__animated animate__fadeInLeft animate__delay-1s">
         <AnimeCard 
            title={showsForGame[show2Idx].title}
            image={showsForGame[show2Idx].image_url}
@@ -145,11 +152,11 @@ class GamePage extends Component {
            score={showsForGame[show2Idx].score}
            rated={showsForGame[show2Idx].rated}
            episodes={showsForGame[show2Idx].episodes}
+           showIdx={this.state.show2Idx}
+           show2={this.state.show2Idx}
+           handleChoose={this.handleChoose}
           />
-          {/* PASS in the show index to delete*/}
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => this.handleChoose(show1Idx)}>
-          Choose Show 2
-        </button>
+        </div>
       </> 
       }
       </>

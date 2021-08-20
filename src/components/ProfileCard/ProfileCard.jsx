@@ -9,25 +9,26 @@ const ProfileCard = (props) => {
   }, [props.userProfile])
 
   return (
-    <>
-    <Link
+    <div className="">
+      <Link
         to={{
           pathname: `/profile/${props.profile._id}`,
           state: props.profile
         }}
         >
-        <div>
-          <h4>{props.profile.name}</h4>  
+        <div className="flex flex-col justify-center">
+          <div className="w-min border">{props.profile.name}</div>  
           <img src='/defaultProfileImg.png' alt='avatar' />
+          
         </div>
-    </Link>
+      </Link>
       { !(userProfile?._id === props.profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleAddFriend(props.profile._id)}>Add Friend</button> 
       }
       { !(userProfile?._id === props.profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleRemoveFriend(props.profile._id)}>Remove Friend</button> 
       }   
-    </>
+    </div>
   );
 }
  
