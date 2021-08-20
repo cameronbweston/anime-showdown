@@ -55,6 +55,8 @@ Trello Board:
 - Gameplay selection defaults to the first position, rather than maintaining it's position on the page.
 - Synopsis on the game page only returns a snippet of the database synopsis.
 - The "Add to Collection", "More Details", and "View on MyAnimeList" buttons on the winning view page not currently operational.
+- The "Choose" button on the Profile Details view is unneccessary and currently breaks the page. The card "Synopsis" button reveals the window, but for some reason it doesn't contain the synopsis as it does during gameplay.
+- Currently unable to leave a review.
 
 ## Lessons Learned:
 This project was a major lesson in planning, time management, communication, and teamwork.  There should have been more detail in the planning and to the division of responsibilities.  

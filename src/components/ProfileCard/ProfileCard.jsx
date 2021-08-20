@@ -9,7 +9,7 @@ const ProfileCard = (props) => {
   }, [props.userProfile])
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 animate__animated animate__flipInY">
       <Link
         to={{
           pathname: `/profile/${props.profile._id}`,
