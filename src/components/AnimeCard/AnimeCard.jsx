@@ -22,8 +22,8 @@ class AnimeCard extends Component {
     return (
       <>
         {/* <div className={this.state.show1 ? 'flex flex-row-reverse justify-evenly min-h-full py-6 sm:py-12 animate__animated animate__fadeInLeft' : 'flex flex-row justify-evenly min-h-full py-6 sm:py-12 animate__animated animate__fadeInLeft'}> */}
-          <div className="py-3 max-w-xl">
-            <div className="bg-white shadow-2xl border-gray-100 max-h-80 border sm:rounded-3xl p-8 flex space-x-8">
+          <div className="py-3 max-w-2xl">
+            <div className="bg-white shadow-2xl border-gray-100  border sm:rounded-3xl p-8 flex space-x-8">
               <div className="h-48 overflow-visible w-1/2">
                 <img className="rounded-3xl shadow-2xl animate__animated animate__fadeInLeft animate__delay-2s" src={image} alt=""/>
               </div>

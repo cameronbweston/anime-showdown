@@ -77,12 +77,31 @@ class GamePage extends Component {
             episodes={showsForGame[0].episodes}
             />
           </div> 
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' 
-                  onClick={() => 
-                  {this.props.handleAddToUserCollection(showsForGame[0])
-                    this.props.history.push(`/profile/${this.props.userProfile._id}`)
-                  }}>Add to Collection</button>
-                
+          <div className="flex justify-evenly mt-20">
+            <button 
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse' 
+              onClick={() => {
+                this.props.handleAddToUserCollection(showsForGame[0])
+                this.props.history.push(`/profile/${this.props.userProfile._id}`)
+              }}
+            >
+              Add to Collection
+            </button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse'>
+              <a href={`/*this.state.show.url*/`}> More Details</a>
+            </button>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate__animated animate__flipInX animate-pulse'>
+              <a href='/*this.state.show.url*/'>View on MyAnimeList</a>
+            </button>
+            
+          </div>   
+          <div className="flex flex-col justify-center items-center">
+            <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-20 animate__animated animate__backInRight">
+              <div className="text-3xl font-semibold">
+                Come back and let us know what you think!
+              </div>
+            </div>
+          </div>   
         </>
       )
     }
