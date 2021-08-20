@@ -16,17 +16,19 @@ class Users extends Component {
 
     return (
       <>
-        <h1>User Profiles</h1>
-       {users.map(profile =>
-          <ProfileCard
-            profile={profile}
-            key={profile._id}
-            userProfile={this.props.userProfile}
-            handleAddFriend={this.props.handleAddFriend}
-            handleRemoveFriend={this.props.handleRemoveFriend}
+        <div className="w-full flex flex-col">
+          {users.map(profile =>
+          <div className="flex justify-center">
+            <ProfileCard
+              profile={profile}
+              key={profile._id}
+              userProfile={this.props.userProfile}
+              handleAddFriend={this.props.handleAddFriend}
+              handleRemoveFriend={this.props.handleRemoveFriend}
           />
-        )}
-       
+          </div>
+          )}
+        </div>
       </>
     )
   }

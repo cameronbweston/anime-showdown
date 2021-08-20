@@ -1,69 +1,60 @@
-# MERN Stack with OAuth Template
+# Anime Showdown
 
-This is a MERN Stack template that includes JWT Authentication.
+Are you overwhelmed with the thousands of anime series, movies, and manga out there?  Perhaps you're a Japanese media fan and need some recommendations off of the beaten path, or maybe you've never waded into the world of anime and manga because you don't know where to start.  Anime Showdown is here to help you dive in, or dive deeper than you've ever gone before.
 
-Use this to go build things! 🚀
+Anime Showdown is a simple application that gauges your interests and recommends new anime or manga through a quick and exciting game. From there, you may further interact with our community to find even more anime or manga to enjoy.  Add media to your collection, find friends, or leave reviews to help us improve our recommendations.
 
-## To Use This Template
+## Getting Started:
+Heroku Deployment: 
+<https://anime-showdown.herokuapp.com/>
 
-__Replace `<name-of-your-app-here>` in the commands below with the name of your app!__
+Upon loading, an unregistered player is prompted to create an account.  After account creation or returning user log-in, the game begins.  A short questionnaire is presented to the player, selecting parameters used to personalize our recommendations.  The rules of the game are simple.  Two options are presented, displaying choice information about the anime or manga.  The player chooses which option is most appealing, based on their initial impressions of the anime.  The chosen media moves forward to the next round, being paired against another anime combatant.  This gameplay continues for a few rounds until one anime or manga is left standing.  The player is then presented options to add this media to their list, view more details, or be directed to out database souce for even more finite information.
 
-```bash
-git clone https://github.com/SEI-Remote-WC/mern-jwt-auth-template-no-hooks <name-of-your-app-here>
-cd <name-of-your-app-here>
-```
+The player is free to use our search feature to explore and discover more anime or manga to add to their collections, leave reviews, edit their own profile, and connect with friends.
 
-Once you are in the project directory:
+## Screenshots:
+Home Registration Page:
+![Home Page](https://i.imgur.com/dcPZbes.png)
 
-```bash
-rm -rf .git
-```
+Initial Game State:
+![All Records](https://i.imgur.com/fUXlCIN.png)
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
+Winning Anime:
+![Add Records](https://i.imgur.com/WakFEsI.png)
 
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
+Game Questionnaire:
+![All Records](https://i.imgur.com/GCSewsD.png)
 
-Re-initialize a git repository:
+## Technologies Used:
+- HTML
+- CSS
+- TailwindCSS
+- JavaScript
+- Node.JS
+- Express
+- MongoDB
+- Mongoose
+- ReactJS
 
-```bash
-git init
-```
+## Planning Materials
 
-Use the GitHub CLI to create a new project repository on GitHub:
+Trello Board: 
+<https://trello.com/b/dV257RcI/anime-show-down>
 
-```bash
-gh repo create <name-of-your-app-here>
-```
+## Next Steps:
+- The progress/meter bars displayed on every anime in the game will be fully functional, and take in collected data from player's personal reviews of anime.
+- Player profile customization will be fully actualized, with the ability to edit a short biography, avatar, and location.
+- A messaging system will be implemented to allow users to connect and hold conversations with each other.
+- The "winner" view will be expanded to hold more information about the victorious anime, including possible sources to stream or read the media.
 
-Run npm i to fetch the template's dependencies:
+## Bugs To Be Addressed:
+- The "Add Friend" button for each profile on the "Users" view crashed the backend server.
+- 
 
-```bash
-npm i
-```
+## Lessons Learned:
+This project was a major lesson in planning, time management, communication, and teamwork.  There should have been more detail in the planning and to the division of responsibilities.  
 
-Then, make an initial commit:
+## Credits:
+All media imagery and sounds are properties of their respective trademark holders, and only used within this application for non-commmercial demonstrative or educational purposes.
 
-```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
-```
-
-touch a .env file:
-
-```bash
-touch .env
-```
-
-Fill it with the following:
-
-```
-DATABASE_URL=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-Replace the `DATABASE_URL` and `SECRET` with values that you provide.
-
-Delete this README.md
-
-You're done!
+We also want to share credit with our instructional team at GA.  Brian, Jurgen, Thiago, Caroline, and Ben have all ha a major hand in getting our team through this project.
