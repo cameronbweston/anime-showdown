@@ -51,8 +51,13 @@ Trello Board:
 ## Bugs To Be Addressed:
 - The "Add Friend" button for each profile on the "Users" view crashed the backend server.
 - The registration form occasionally alerts with "error" despite the user being successfully logged in.
-- Gameplay currently only returns from our sample data, not from the API with the player's recommendation preferences.
+- ~~Gameplay currently only returns from our sample data, not from the API with the player's recommendation preferences.~~
+- Gameplay selection defaults to the first position, rather than maintaining it's position on the page.
+- Synopsis on the game page only returns a snippet of the database synopsis.
 - The "Add to Collection", "More Details", and "View on MyAnimeList" buttons on the winning view page not currently operational.
+- The "Choose" button on the Profile Details view is unneccessary and currently breaks the page. The card "Synopsis" button reveals the window, but for some reason it doesn't contain the synopsis as it does during gameplay.
+- Currently unable to leave a review.
+- After updating profile through "Settings", the following redirected page needs an additional refresh to reflect the changes.  A similar bug happens when adding an anime to a user's collection.  The user is properly redirected, but an addictional refresh is needed to update the information.
 
 ## Lessons Learned:
 This project was a major lesson in planning, time management, communication, and teamwork.  There should have been more detail in the planning and to the division of responsibilities.  

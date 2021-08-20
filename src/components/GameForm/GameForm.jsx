@@ -1,4 +1,5 @@
 import React, { Component } from 'react' 
+import './GameForm.css'
 
 class GameForm extends Component {
   state = {
@@ -18,7 +19,7 @@ class GameForm extends Component {
       isPG: false,
       isPG13: false,
       isR17: false,
-      isRPlus: false
+      isRPlus: false,
     }
   }
 
@@ -44,8 +45,8 @@ class GameForm extends Component {
 
   render() {
     console.log(this.props)
-  return ( 
-    <div className="flex flex-col justify-center items-center">
+    return ( 
+      <div className="flex flex-col justify-center items-center">
 
       {/* WELCOME BUBBLE */}
       <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
@@ -60,145 +61,150 @@ class GameForm extends Component {
         onSubmit={this.handleSubmit}
       > 
 
-      {/* QUESTION BUBBLE #1 */}
+        {/* QUESTION BUBBLE #1 */}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight flex justify-center">
-          <div className="text-2xl font-semibold">
-            <p>Are you looking for an anime series, movie, or manga?</p>
-            <div className="text-center">
+          <div className="text-2xl font-semibold flex flex-col items-center">
+            <p className="mb-4">
+              Are you looking for an anime series, movie, or manga?
+            </p>
+            <div className="text-left m-win-max">
               <input
                 onChange={this.handleChange}
+                className=""
                 type="checkbox" 
                 id="tv"
                 name="isTv"
               />
-              <label htmlFor="tv">Series</label><br/>
+              <label htmlFor="tv" className="ml-4">Series</label><br/>
               <input
                 onChange={this.handleChange}
+                className=""
                 type="checkbox" 
                 id="movie"
                 name="isMovie"
               />
-              <label htmlFor="movie">Movie</label><br/>
+              <label htmlFor="movie" className="ml-4">Movie</label><br/>
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="manga"
                 name="isManga"
               />
-              <label htmlFor="manga">Manga</label>
+              <label htmlFor="manga" className="ml-4">Manga</label>
             </div>
           </div>
         </div> 
 
-      {/* QUESTION BUBBLE #2 */}
+        {/* QUESTION BUBBLE #2 */}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInLeft flex justify-center">
-          <div className="text-2xl font-semibold">
-            <div className="text-center">
-              <p>What genre(s) are you interested in?</p>
+          <div className="text-2xl font-semibold flex flex-col items-center">
+            <p className="mb-4">What genre(s) are you interested in?</p>
+            <div className="text-left m-win-max">
               <input
                 type="checkbox" 
                 id="scifi"
                 name="isSciFi"
                 onChange={this.handleChange}
               />
-              <label htmlFor="scifi">Sci-Fi</label><br/>
+              <label htmlFor="scifi" className="ml-4">Sci-Fi</label><br/>
               <input
                 type="checkbox" 
                 id="fantasy"
                 name="isFantasy"
                 onChange={this.handleChange}
               />
-              <label htmlFor="fantasy">Fantasy</label><br/>
+              <label htmlFor="fantasy" className="ml-4">Fantasy</label><br/>
               <input
                 type="checkbox" 
                 id="comedy"
                 name="isComedy"
                 onChange={this.handleChange}
               />
-              <label htmlFor="comedy">Comedy</label><br/>
+              <label htmlFor="comedy" className="ml-4">Comedy</label><br/>
               <input
                 type="checkbox" 
                 id="drama"
                 name="isDrama"
                 onChange={this.handleChange}
               />
-              <label htmlFor="drama">Drama</label><br/>
+              <label htmlFor="drama" className="ml-4">Drama</label><br/>
               <input
                 type="checkbox" 
                 id="action"
                 name="isActionAdventure"
                 onChange={this.handleChange}
               />
-              <label htmlFor="action">Action & Adventure</label><br/>
+              <label htmlFor="action" className="ml-4">Action & Adventure</label><br/>
               <input
                 type="checkbox" 
                 id="horror"
                 name="isHorrorPsych"
                 onChange={this.handleChange}
               />
-              <label htmlFor="horror">Horror & Psychological</label><br/>
+              <label htmlFor="horror" className="ml-4">Horror & Psychological</label><br/>
               <input
                 type="checkbox" 
                 id="mystery"
                 name="isCrimeMystery"
                 onChange={this.handleChange}
               />
-              <label htmlFor="mystery">Crime & Mystery</label>
+              <label htmlFor="mystery" className="ml-4">Crime & Mystery</label>
             </div>
           </div>
         </div>
 
-      {/* QUESTION BUBBLE #3 */}
-        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight  flex justify-center">
-          <div className="text-2xl font-semibold">
-            <div className="text-center">
-              <p>What rating(s) would be appropriate?</p>
+        {/* QUESTION BUBBLE #3 */}
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight flex justify-center">
+          <div className="text-2xl font-semibold flex flex-col items-center">
+            <p>What rating(s) would be appropriate?</p>
+            <div className="text-left m-win-max mt-4">
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="g"
                 name="isG"
               />
-              <label htmlFor="g">G - All Ages</label><br/>
+              <label htmlFor="g" className="ml-4">G - All Ages</label><br/>
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="pg"
                 name="isPG"
               />
-              <label htmlFor="pg">PG - Children</label><br/>
+              <label htmlFor="pg" className="ml-4">PG - Children</label><br/>
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="pg13"
                 name="isPG13"
               />
-              <label htmlFor="pg13">PG-13 - Teens 13 or older</label><br/>
+              <label htmlFor="pg13" className="ml-4">PG-13 - Teens 13 or older</label><br/>
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="r17"
                 name="isR17"
               />
-              <label htmlFor="r17">R17 - 17+ Recommended (Violence/Profanity)</label><br/>
+              <label htmlFor="r17" className="ml-4">R17 - 17+ Recommended</label><br/>
               <input
                 onChange={this.handleChange}
                 type="checkbox" 
                 id="r"
                 name="isRPlus"
               />
-              <label htmlFor="r" >R+ - Mild Nudity (Violence/Profanity)</label>
+              <label htmlFor="r" className="ml-4">R+ - Mild Nudity</label>
             </div>
           </div>
         </div>
 
+        {/*SUBMISSION BUBBLE*/}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInUp flex justify-center">
           <div className="text-3xl font-semibold">
             <button 
               type="submit"
               onClick={this.handleSubmit}
               // disabled={this.state.invalidForm}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded animate-pulse">
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg animate-pulse">
               Showdown!
             </button>
           </div>

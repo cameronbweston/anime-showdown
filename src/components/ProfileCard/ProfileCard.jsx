@@ -9,25 +9,37 @@ const ProfileCard = (props) => {
   }, [props.userProfile])
 
   return (
-    <div className="">
+    <div className="mt-10 animate__animated animate__flipInY">
       <Link
         to={{
           pathname: `/profile/${props.profile._id}`,
           state: props.profile
         }}
         >
-        <div className="flex flex-col justify-center">
-          <div className="w-min border">{props.profile.name}</div>  
-          <img src='/defaultProfileImg.png' alt='avatar' />
+        <div className="flex flex-col justify-center items-center">
+          <div className="w-min text-3xl">
+            {props.profile.name}
+          </div>  
+          <img src='/defaultProfileImg.png' alt='avatar' className="rounded-2xl shadow-2xl"/>
           
         </div>
       </Link>
-      { !(userProfile?._id === props.profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleAddFriend(props.profile._id)}>Add Friend</button> 
-      }
-      { !(userProfile?._id === props.profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
-      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={() => props.handleRemoveFriend(props.profile._id)}>Remove Friend</button> 
-      }   
+      <div className="flex justify-center">
+        <div className="w-max my-2">
+          { !(userProfile?._id === props.profile._id) && !(userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full shadow-2xl' onClick={() => props.handleAddFriend(props.profile._id)}>
+              Add Friend
+            </button> 
+          }
+        </div>
+        <div className="w-max my-2">
+          { !(userProfile?._id === props.profile._id) && (userProfile?.friends?.some(eachProfile => eachProfile._id === props.profile._id)) &&
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full shadow-2xl' onClick={() => props.handleRemoveFriend(props.profile._id)}>
+              Remove Friend
+            </button> 
+          }   
+        </div>
+      </div>
     </div>
   );
 }
