@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import AnimeCard from '../../components/AnimeCard/AnimeCard';
 import * as animeAPI from '../../services/animeService'
-import './GamePage.css'
 import vsimg from './versus.png'
 import swordstrike from './swordstrike.wav'
+import LoadingPage from '../../components/LoadingPage/LoadingPage';
 
 class GamePage extends Component {
   state = { 
@@ -115,16 +115,9 @@ class GamePage extends Component {
       <>
       {isLoading ? 
         <>
-          <div className="flex flex-col justify-center items-center h-screen">
-            <div className="flex justify-center">
-              <div className="text-5xl mb-8">LOADING</div>  
-            </div>
-            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32" />
-          </div>
+          <LoadingPage/>
         </>
-
         :
-
       <>
       <div className="flex flex-col justify-center items-center">
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
