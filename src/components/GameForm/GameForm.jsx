@@ -19,7 +19,7 @@ class GameForm extends Component {
       isPG: false,
       isPG13: false,
       isR17: false,
-      isRPlus: false
+      isRPlus: false,
     }
   }
 
@@ -45,8 +45,8 @@ class GameForm extends Component {
 
   render() {
     console.log(this.props)
-  return ( 
-    <div className="flex flex-col justify-center items-center">
+    return ( 
+      <div className="flex flex-col justify-center items-center">
 
       {/* WELCOME BUBBLE */}
       <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-8 animate__animated animate__backInLeft">
@@ -61,10 +61,12 @@ class GameForm extends Component {
         onSubmit={this.handleSubmit}
       > 
 
-      {/* QUESTION BUBBLE #1 */}
+        {/* QUESTION BUBBLE #1 */}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight flex justify-center">
           <div className="text-2xl font-semibold flex flex-col items-center">
-            <p className="mb-4">Are you looking for an anime series, movie, or manga?</p>
+            <p className="mb-4">
+              Are you looking for an anime series, movie, or manga?
+            </p>
             <div className="text-left m-win-max">
               <input
                 onChange={this.handleChange}
@@ -93,11 +95,11 @@ class GameForm extends Component {
           </div>
         </div> 
 
-      {/* QUESTION BUBBLE #2 */}
+        {/* QUESTION BUBBLE #2 */}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInLeft flex justify-center">
           <div className="text-2xl font-semibold flex flex-col items-center">
-              <p className="mb-4">What genre(s) are you interested in?</p>
-              <div className="text-left m-win-max">
+            <p className="mb-4">What genre(s) are you interested in?</p>
+            <div className="text-left m-win-max">
               <input
                 type="checkbox" 
                 id="scifi"
@@ -147,12 +149,12 @@ class GameForm extends Component {
                 onChange={this.handleChange}
               />
               <label htmlFor="mystery" className="ml-4">Crime & Mystery</label>
-              </div>
+            </div>
           </div>
         </div>
 
-      {/* QUESTION BUBBLE #3 */}
-        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight  flex justify-center">
+        {/* QUESTION BUBBLE #3 */}
+        <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInRight flex justify-center">
           <div className="text-2xl font-semibold flex flex-col items-center">
             <p>What rating(s) would be appropriate?</p>
             <div className="text-left m-win-max mt-4">
@@ -195,6 +197,7 @@ class GameForm extends Component {
           </div>
         </div>
 
+        {/*SUBMISSION BUBBLE*/}
         <div className="border p-5 bg-white rounded-3xl shadow-2xl mt-12 animate__animated animate__backInUp flex justify-center">
           <div className="text-3xl font-semibold">
             <button 
