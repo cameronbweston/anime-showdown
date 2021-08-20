@@ -3,9 +3,25 @@ import { Profile } from "../models/profile.js"
 export {
   userProfile,
   getProfileDetails,
+  edit,
   index,
   friend,
   unfriend
+}
+
+function edit(req, res) {
+  console.log(req.body)
+  console.log(req.user)
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.name = req.body.name
+    profile.email = req.body.email
+    profile.save()
+    profile.populate('animeCollection').populate('friends').execPopulate()
+    .then(()=> {
+      res.json(profile)
+    })
+  })
 }
 
 function userProfile(req, res) {

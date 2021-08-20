@@ -12,6 +12,7 @@ import * as animeAPI from '../../services/animeService'
 import AnimeDetails from '../AnimeDetails/AnimeDetails'
 import GamePage from '../GamePage/GamePage'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
+import ProfileEdit from '../ProfileEdit/ProfileEdit'
 import Friends from '../Friends/Friends'
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
 	handleSignupOrLogin = async() => {
 		this.setState({ user: authService.getUser(), userProfile: await profileAPI.getUserProfile() })
 	}
+
 	handleAddFriend = async friendId => {
 		const updatedProfile = await profileAPI.friend(friendId)
 		this.setState({ userProfile: updatedProfile })
@@ -56,6 +58,10 @@ class App extends Component {
 		this.setState({userProfile: updatedProfile})
 	  }
 
+	handleAddReview = async review=>{
+		
+	}
+
 	  
 	render() {
 		const { user, userProfile } = this.state
@@ -67,7 +73,9 @@ class App extends Component {
 			<Route exact path='/'>
 				<Landing 
 					user={user} 
+					userProfile={userProfile}
 					history={this.props.history}
+					handleSignupOrLogin={this.handleSignupOrLogin}
 					getRandomShowsForGameStart={animeAPI.getRandomShowsForGameStart}
 				/>
 			</Route>
@@ -82,6 +90,11 @@ class App extends Component {
 				<AnimeDetails 
 				match={match} />}
 			/>
+			<Route exact path='/settings'>
+				<ProfileEdit 
+					userProfile={userProfile}
+					history={this.props.history}/>
+			</Route>
 			<Route 
 				exact path='/profile/:id'
 				render={({ match })=> 

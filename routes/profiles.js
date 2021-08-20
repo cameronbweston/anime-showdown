@@ -13,6 +13,7 @@ const router = Router();
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/edit', checkAuth, profilesCtrl.edit)
 router.get('/userProfile', checkAuth, profilesCtrl.userProfile)
 router.get('/:id', checkAuth, profilesCtrl.getProfileDetails)
 router.get('/', checkAuth, profilesCtrl.index)

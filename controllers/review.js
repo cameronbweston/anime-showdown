@@ -1,5 +1,6 @@
 import {Review} from '../models/review.js'
 import {Anime } from '../models/anime.js'
+import {Profile} from '../models/profile.js'
 
 export {
     create,
@@ -9,30 +10,38 @@ export {
     
 }
 
-function deleteReview(req, res) {
-    Anime.findByIdAndDelete(req.body)
-    .then((review)=>{
-        res.json(review)
-    })
-}
 
 function create(req, res) {
-    Review.create(req.body)
-    .then(review=>{
-        Anime.findById(req.params.id)
-        .then(anime =>{
-            anime.review.push(review._id)
-            anime.save()
+    Anime.findById(req.params.id)
+    .then((anime)=>{
+        Review.create(req.body)
+        .then((review)=>{
+            review.anime.push(review)
+            review.populate('comment')
+            review.save()
             .then(()=>{
                 res.json(review)
             })
+        })
+        
+    })
+    
+}
+function deleteReview(req, res) {
+    Profile.findById(req.user.profile)
+        .then((profile)=>{
+            profile.reviews.remove(req.params.id)
+            profile.save()
+            Review.findByIdAndDelete(req.params.id)
+                .then((review)=>{
+                res.json(review)
         })
     })
 }
 
 function update(req, res) {
-    Review.findByIdAndUpdate(req.params.id)
-    .populate('reviews')
+    Review.findByIdAndUpdate(req.body)
+    .populate('comment')
     .then((review)=>{
         res.json(review)
 
@@ -41,7 +50,11 @@ function update(req, res) {
 
 function index(req, res) {
     Review.findById(req.params.id)
-    .populate('reviews')
+    .populate('psychologicalRating')
+    .populate('goreRating')
+    .populate('sexualContentRating')
+    .populate('userRating')
+    .populate('comment')
     .then(review=>{
         res.json(review)
     })

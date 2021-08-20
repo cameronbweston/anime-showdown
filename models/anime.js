@@ -17,6 +17,7 @@ const animeSchema = new mongoose.Schema(
     type: String,
     url: String,
     collected_by: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
+    review: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}]
   },
   {
     timestamps: true,
